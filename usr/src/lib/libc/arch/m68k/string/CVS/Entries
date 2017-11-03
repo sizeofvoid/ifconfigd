@@ -1,0 +1,22 @@
+/Makefile.inc/1.6/Sun Apr 25 00:23:58 1999//
+/bcmp.S/1.5/Sun Aug  7 16:40:14 2005//
+/bcopy.S/1.5/Sun Aug  7 16:40:14 2005//
+/bzero.S/1.5/Sun Aug  7 16:40:14 2005//
+/ffs.S/1.5/Sun Aug  7 16:40:14 2005//
+/index.S/1.5/Sun Aug  7 16:40:14 2005//
+/memcmp.S/1.5/Sun Aug  7 16:40:14 2005//
+/memcpy.S/1.3/Sun Aug  7 16:40:14 2005//
+/memmove.S/1.3/Sun Aug  7 16:40:14 2005//
+/memset.S/1.5/Sun Aug  7 16:40:14 2005//
+/rindex.S/1.5/Sun Aug  7 16:40:14 2005//
+/strcat.S/1.7/Sun Aug  7 16:40:14 2005//
+/strchr.S/1.3/Sun Aug  7 16:40:14 2005//
+/strcmp.S/1.5/Sun Aug  7 16:40:14 2005//
+/strcpy.S/1.8/Sun Aug  7 16:40:14 2005//
+/strlcpy.S/1.7/Sun Aug  7 16:40:14 2005//
+/strlen.S/1.5/Sun Aug  7 16:40:14 2005//
+/strncmp.S/1.5/Sun Aug  7 16:40:14 2005//
+/strncpy.S/1.5/Sun Aug  7 16:40:14 2005//
+/strrchr.S/1.3/Sun Aug  7 16:40:14 2005//
+/swab.S/1.5/Sun Aug  7 16:40:14 2005//
+D

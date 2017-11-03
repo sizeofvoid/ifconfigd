@@ -1,0 +1,26 @@
+/e_acos.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_asin.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_atanh.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_cosh.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_exp.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_log.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_log10.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_remainder.S/1.3/Sun Sep  7 20:36:08 2008//
+/e_scalb.S/1.3/Sun Sep  7 20:36:08 2008//
+/e_sinh.S/1.4/Sun Sep  7 20:36:08 2008//
+/e_sqrt.S/1.4/Sun Sep  7 20:36:08 2008//
+/s_atan.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_ceil.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_copysign.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_cos.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_expm1.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_floor.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_log1p.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_logb.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_rint.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_scalbn.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_sin.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_tan.S/1.3/Tue Aug  2 11:17:32 2005//
+/s_tanh.S/1.3/Tue Aug  2 11:17:32 2005//
+/fenv.c/1.2/Thu Apr 28 17:34:23 2011//
+D

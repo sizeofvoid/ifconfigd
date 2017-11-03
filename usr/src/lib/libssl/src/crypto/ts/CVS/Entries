@@ -1,0 +1,14 @@
+/Makefile/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts.h/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_asn1.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_conf.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_err.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_lib.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_req_print.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_req_utils.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_rsp_print.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_rsp_sign.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_rsp_utils.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+/ts_rsp_verify.c/1.2/Fri Oct  1 22:58:57 2010//
+/ts_verify_ctx.c/1.1.1.1/Fri Oct  1 22:54:11 2010//
+D

@@ -1,0 +1,20 @@
+/common.c/1.1.1.4/Fri Apr 14 07:33:01 2006//
+/convert_db.c/1.3/Fri Apr 14 08:15:04 2006//
+/db.c/1.1.1.3/Fri Apr 14 07:33:01 2006//
+/db3.c/1.1.1.4/Fri Apr 14 07:33:01 2006//
+/hdb-ldap.c/1.2/Sat Sep 30 17:48:22 2006//
+/hdb-private.h/1.1.1.2/Sun May 11 02:15:43 2003//
+/hdb-protos.h/1.1.1.4/Fri Apr 14 07:33:03 2006//
+/hdb.asn1/1.1.1.3/Fri Apr 14 07:33:02 2006//
+/hdb.c/1.1.1.3/Fri Apr 14 07:33:02 2006//
+/hdb.h/1.1.1.2/Fri Apr 14 07:33:02 2006//
+/hdb.schema/1.1.1.1/Fri Apr 14 07:33:02 2006//
+/hdb_err.et/1.1.1.1/Fri May 25 07:50:17 2001//
+/hdb_locl.h/1.5/Fri Apr 14 08:15:04 2006//
+/keys.c/1.1.1.1/Fri Apr 14 07:33:02 2006//
+/keytab.c/1.1.1.4/Fri Apr 14 07:33:02 2006//
+/libasn1.h/1.1.1.3/Wed Feb  6 08:55:12 2002//
+/mkey.c/1.3/Fri Apr 14 08:15:04 2006//
+/ndbm.c/1.1.1.3/Fri Apr 14 07:33:03 2006//
+/print.c/1.1.1.3/Sun May 11 02:15:43 2003//
+D

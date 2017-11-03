@@ -1,0 +1,76 @@
+.\"	$OpenBSD: $
+.\"
+.\" Copyright (c) 2011 Rafael Sadowski <rafael@sizeofvoid.org> 
+.\" Copyright (c) 2004, 2005 Esben Norby <norby@openbsd.org>
+.\"
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd $Mdocdate: May 10 2010 $
+.Dt IFCONFIGDCTL 8
+.Os
+.Sh NAME
+.Nm ifconfigctl
+.Nd control the Network Interface Daemon
+.Sh SYNOPSIS
+.Nm
+.Op Fl s Ar socket
+.Ar command
+.Op Ar argument ...
+.Sh DESCRIPTION
+The
+.Nm
+program controls the
+.Xr ifconfigd 8
+daemon.
+.Pp
+The following options are available:
+.Bl -tag -width Ds
+.It Fl s Ar socket
+Use
+.Ar socket
+instead of the default
+.Pa /var/run/ifconfigd.sock
+to communicate with
+.Xr ifconfigd 8 .
+.El
+.Pp
+The following commands are available:
+.Bl -tag -width Ds
+.It Cm reload
+Reload the configuration file.
+.It Cm use Op Ar filter
+Use the the ethernet, wireless Network.
+.Ar filter
+can be any one of the following:
+.Pp
+.Bl -tag -width "self-originatedXX" -compact
+.It Cm ethernet Ar name
+Connection to ethernet network.
+.It Cm wireless Ar name
+Connection to wireless network.
+.El
+.Sh FILES
+.Bl -tag -width "/var/run/ifconfigd.sockXX" -compact
+.It /var/run/ifconfigd.sock
+.Ux Ns -domain
+socket used for communication with
+.Xr ifconfigd 8 .
+.El
+.Sh SEE ALSO
+.Xr ifconfigd.conf 5 ,
+.Xr ifconfigd 8
+.Sh HISTORY
+The
+.Nm
+program first appeared in
+.Ox 5.x .

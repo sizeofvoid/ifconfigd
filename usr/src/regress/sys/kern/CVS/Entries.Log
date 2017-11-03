@@ -1,0 +1,12 @@
+A D/dev////
+A D/nxbss////
+A D/nxheap////
+A D/nxheap-mprotect////
+A D/nxstack////
+A D/nxstack-mprotect////
+R D/nxstack-mprotect////
+R D/nxstack////
+R D/nxheap-mprotect////
+R D/nxheap////
+R D/nxbss////
+R D/dev////

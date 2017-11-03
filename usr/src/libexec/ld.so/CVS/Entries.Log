@@ -1,0 +1,12 @@
+A D/libdl////
+A D/mips////
+A D/prebind////
+A D/prebind_strip////
+A D/test////
+A D/x86_64////
+R D/x86_64////
+R D/test////
+R D/prebind_strip////
+R D/prebind////
+R D/mips////
+R D/libdl////

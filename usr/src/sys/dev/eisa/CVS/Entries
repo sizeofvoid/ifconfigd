@@ -1,0 +1,18 @@
+/Makefile/1.1/Thu Apr 18 23:47:08 1996//
+/ahc_eisa.c/1.20/Thu Nov 18 21:15:15 2010//
+/bha_eisa.c/1.6/Sun Mar 29 21:53:52 2009//
+/cac_eisa.c/1.4/Tue Jun  2 11:38:21 2009//
+/devlist2h.awk/1.4/Sat Mar 29 00:17:44 2003//
+/dpt_eisa.c/1.4/Tue May 13 02:24:08 2008//
+/eisa.c/1.13/Sun Mar 29 21:53:52 2009//
+/eisadevs/1.20/Wed May  5 05:33:56 2004//
+/eisadevs.h/1.21/Wed May  5 05:34:12 2004//
+/eisadevs_data.h/1.21/Wed May  5 05:34:12 2004//
+/eisareg.h/1.4/Sun May  5 12:42:24 1996//
+/eisavar.h/1.13/Sun May 23 14:50:31 2010//
+/files.eisa/1.10/Sun Dec 17 21:35:03 2000//
+/if_ep_eisa.c/1.22/Sat Jun 17 17:58:39 2006//
+/if_fea.c/1.20/Mon Sep 20 07:40:42 2010//
+/uha_eisa.c/1.12/Sat Aug  7 03:50:01 2010//
+/aha1742.c/1.43/Mon May  2 11:17:07 2011//
+D

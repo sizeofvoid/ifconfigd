@@ -1,0 +1,22 @@
+/autoconf.c/1.39/Thu Nov 11 17:58:21 2010//
+/clock.c/1.31/Mon Sep 20 06:33:47 2010//
+/cpu.c/1.66/Sat Jun 26 23:24:43 2010//
+/db_interface.c/1.9/Tue Sep 16 04:20:42 2008//
+/dma.c/1.34/Sun Dec 26 15:40:59 2010//
+/genassym.cf/1.22/Tue Sep 28 20:27:55 2010//
+/lock_machdep.c/1.1/Mon Sep  7 19:29:33 2009//
+/locore.S/1.41/Mon Jul 28 19:08:46 2008//
+/mainbus.c/1.21/Sun Apr 19 17:53:39 2009//
+/mem.c/1.16/Wed Nov  5 06:32:47 2008//
+/ofw_machdep.c/1.35/Wed Apr 21 03:03:26 2010//
+/ofw_machdep.h/1.3/Mon Jun  2 16:16:27 2003//
+/ofwreal.S/1.3/Thu Oct 16 05:03:22 2003//
+/opendev.c/1.9/Thu Mar  9 23:06:19 2006//
+/openfirm.c/1.10/Mon Nov 12 19:23:26 2007//
+/openprom.c/1.1/Mon Nov 12 19:23:26 2007//
+/rbus_machdep.c/1.11/Wed Sep 22 02:28:37 2010//
+/wscons_machdep.c/1.6/Wed Jan 23 16:37:56 2008//
+/conf.c/1.45/Mon May  2 11:16:46 2011//
+/disksubr.c/1.72/Mon May  2 11:16:46 2011//
+/machdep.c/1.126/Mon May  2 11:16:46 2011//
+D

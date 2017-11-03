@@ -1,0 +1,16 @@
+/Makefile.inc/1.10/Tue Apr 21 09:34:50 2009//
+/_setjmp.S/1.5/Sun Aug  7 16:40:13 2005//
+/divrem.m4/1.4/Sat Mar  1 00:19:08 2003//
+/fabs.S/1.5/Tue Dec  9 20:21:06 2008//
+/flt_rounds.c/1.5/Sun Aug  7 16:40:13 2005//
+/fpgetmask.c/1.5/Sun Aug  7 16:40:13 2005//
+/fpgetround.c/1.4/Sun Aug  7 16:40:13 2005//
+/fpgetsticky.c/1.5/Sun Aug  7 16:40:13 2005//
+/fpsetmask.c/1.5/Sun Aug  7 16:40:13 2005//
+/fpsetround.c/1.4/Sun Aug  7 16:40:13 2005//
+/fpsetsticky.c/1.5/Sun Aug  7 16:40:13 2005//
+/infinity.c/1.5/Sun Aug  7 16:40:13 2005//
+/nan.c/1.1/Thu Jul 24 09:31:06 2008//
+/setjmp.S/1.7/Sun Aug  7 16:40:13 2005//
+/sigsetjmp.S/1.4/Sun Aug  7 16:40:13 2005//
+D

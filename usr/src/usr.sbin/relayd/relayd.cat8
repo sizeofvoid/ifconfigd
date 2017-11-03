@@ -1,0 +1,75 @@
+RELAYD(8)               OpenBSD System Manager's Manual              RELAYD(8)
+
+NNAAMMEE
+     rreellaayydd - relay daemon
+
+SSYYNNOOPPSSIISS
+     rreellaayydd [--ddnnvv] [--DD _m_a_c_r_o=_v_a_l_u_e] [--ff _f_i_l_e]
+
+DDEESSCCRRIIPPTTIIOONN
+     rreellaayydd is a daemon to relay and dynamically redirect incoming connections
+     to a target host.  Its main purposes are to run as a load-balancer,
+     application layer gateway, or transparent proxy.  The daemon is able to
+     monitor groups of hosts for availability, which is determined by checking
+     for a specific service common to a host group.  When availability is
+     confirmed, layer 3 and/or layer 7 forwarding services are set up by
+     rreellaayydd.
+
+     Layer 3 redirection happens at the packet level; to configure it, rreellaayydd
+     communicates with pf(4).  To allow rreellaayydd to properly set up pf(4) rules,
+     the following line is required in the filter section of pf.conf(5):
+
+           anchor "relayd/*"
+
+     Layer 7 relaying happens at the application level and is handled by
+     rreellaayydd itself.  Various application level filtering and protocol-specific
+     load-balancing options are available for relays.
+
+     rreellaayydd works in terms of the following _e_n_t_i_t_i_e_s: relays, protocols,
+     redirections, and tables.  A _r_e_l_a_y represents a layer 7 load-balancing
+     instance.  Each instance translates to a listening TCP or UDP port.  A
+     _p_r_o_t_o_c_o_l defines which actions, if any, are taken on the packet payload
+     as data crosses a relay.  A _r_e_d_i_r_e_c_t_i_o_n represents a layer 3 load-
+     balancing instance.  Each instance translates to a pf(4) rdr-to rule
+     being added.  A _t_a_b_l_e represents a group of hosts which can be checked
+     for availability using the same method.  Each table contains at least one
+     host.  If a table is used in a layer 3 load-balancing instance, it will
+     be mapped to a pf(4) table containing only those hosts which are up.
+
+     All these entities can be configured in relayd.conf(5), and relayctl(8)
+     can be used to alter or report on the status of each entity.
+
+     The options are as follows:
+
+     --DD _m_a_c_r_o=_v_a_l_u_e
+             Define _m_a_c_r_o to be set to _v_a_l_u_e on the command line.  Overrides
+             the definition of _m_a_c_r_o in the configuration file.
+
+     --dd      Do not daemonize.  If this option is specified, rreellaayydd will run
+             in the foreground and log to _s_t_d_e_r_r.
+
+     --ff _f_i_l_e
+             Specify an alternative configuration file.  The default is
+             _/_e_t_c_/_r_e_l_a_y_d_._c_o_n_f.
+
+     --nn      Configtest mode.  Only check the configuration file for validity.
+
+     --vv      Produce more verbose output.
+
+FFIILLEESS
+     /etc/relayd.conf        Default configuration file.
+     /var/run/relayd.sock    UNIX-domain socket used for communication with
+                             relayctl(8).
+
+SSEEEE AALLSSOO
+     relayd.conf(5), relayctl(8)
+
+HHIISSTTOORRYY
+     The rreellaayydd program, formerly known as hhoossttssttaatteedd, first appeared in
+     OpenBSD 4.1.  It was renamed to rreellaayydd in OpenBSD 4.3.
+
+AAUUTTHHOORRSS
+     The rreellaayydd program was written by Pierre-Yves Ritschard <pyr@openbsd.org>
+     and Reyk Floeter <reyk@openbsd.org>.
+
+OpenBSD 4.9                      May 24, 2010                      OpenBSD 4.9

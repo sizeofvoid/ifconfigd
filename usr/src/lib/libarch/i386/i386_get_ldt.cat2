@@ -1,0 +1,61 @@
+I386_GET_LDT(2)       OpenBSD Programmer's Manual (i386)       I386_GET_LDT(2)
+
+NNAAMMEE
+     ii338866__ggeett__llddtt, ii338866__sseett__llddtt - manage i386 per-process Local Descriptor
+     Table entries
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<ssyyss//ttyyppeess..hh>>
+     ##iinncclluuddee <<mmaacchhiinnee//sseeggmmeennttss..hh>>
+     ##iinncclluuddee <<mmaacchhiinnee//ssyyssaarrcchh..hh>>
+
+     _i_n_t
+     ii338866__ggeett__llddtt(_i_n_t _s_t_a_r_t___s_e_l, _u_n_i_o_n _d_e_s_c_r_i_p_t_o_r _*_d_e_s_c_s, _i_n_t _n_u_m___s_e_l_s);
+
+     _i_n_t
+     ii338866__sseett__llddtt(_i_n_t _s_t_a_r_t___s_e_l, _u_n_i_o_n _d_e_s_c_r_i_p_t_o_r _*_d_e_s_c_s, _i_n_t _n_u_m___s_e_l_s);
+
+DDEESSCCRRIIPPTTIIOONN
+     ii338866__ggeett__llddtt() returns a list of the i386 descriptors in the current
+     process' LDT.  ii338866__sseett__llddtt() sets a list of i386 descriptors in the
+     current process' LDT.  For both routines, _s_t_a_r_t___s_e_l specifies the index
+     of the selector in the LDT at which to begin and _d_e_s_c_s points to an array
+     of _n_u_m___s_e_l_s descriptors to be set or returned.
+
+     Each entry in the _d_e_s_c_s array can be either a segment_descriptor or a
+     gate_descriptor, as defined in <_i_3_8_6_/_s_e_g_m_e_n_t_s_._h>.  These structures are
+     defined by the architecture as disjoint bit-fields, so care must be taken
+     in constructing them.
+
+     Before this API can be used the functionality has to be enabled using the
+     machdep.userldt sysctl(8) variable.
+
+     NNoottee:: Code using the ii338866__ggeett__llddtt() and ii338866__sseett__llddtt() functions must be
+     compiled using --llii338866.
+
+RREETTUURRNN VVAALLUUEESS
+     Upon successful completion, ii338866__ggeett__llddtt() returns the number of i386
+     descriptors copied into _d_e_s_c_s from the current process' LDT.  Otherwise,
+     a value of -1 is returned and the global variable _e_r_r_n_o is set to
+     indicate the error.
+
+     Upon successful completion, ii338866__sseett__llddtt() returns the first selector
+     set; if the kernel allocated a descriptor in the LDT, the allocated index
+     is returned.  Otherwise, a value of -1 is returned and the global
+     variable _e_r_r_n_o is set to indicate the error.
+
+EERRRROORRSS
+     ii338866__ggeett__llddtt() and ii338866__sseett__llddtt() will fail if:
+
+     [EINVAL]  An inappropriate parameter was used for _s_t_a_r_t___s_e_l or _n_u_m___s_e_l_s.
+
+     [EACCES]  The caller attempted to use a descriptor that would circumvent
+               protection or cause a failure.
+
+RREEFFEERREENNCCEESS
+     Intel, _i_3_8_6 _M_i_c_r_o_p_r_o_c_e_s_s_o_r _P_r_o_g_r_a_m_m_e_r_'_s _R_e_f_e_r_e_n_c_e _M_a_n_u_a_l.
+
+WWAARRNNIINNGG
+     You can really hose your process using this.
+
+OpenBSD 4.9                      May 31, 2007                      OpenBSD 4.9

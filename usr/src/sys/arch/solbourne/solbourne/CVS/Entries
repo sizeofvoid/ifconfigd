@@ -1,0 +1,10 @@
+/autoconf.c/1.12/Thu Nov 18 21:13:19 2010//
+/clock.c/1.1/Tue Apr 19 21:30:18 2005//
+/genassym.cf/1.2/Fri Apr 10 20:57:28 2009//
+/locore.s/1.15/Sat Nov 27 18:04:20 2010//
+/mem.c/1.2/Sat Sep 22 16:21:32 2007//
+/pmap.c/1.4/Mon Dec  6 20:57:18 2010//
+/prom_machdep.c/1.1/Tue Apr 19 21:30:18 2005//
+/machdep.c/1.18/Mon May  2 11:17:02 2011//
+/trap.c/1.12/Mon May  2 11:17:02 2011//
+D

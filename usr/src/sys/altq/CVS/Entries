@@ -1,0 +1,21 @@
+/altq.h/1.7/Fri Nov 19 22:36:11 2010//
+/altq_cbq.c/1.25/Fri May  9 14:10:05 2008//
+/altq_cbq.h/1.10/Wed Jan 14 08:42:23 2004//
+/altq_cdnr.c/1.10/Thu May  8 15:22:02 2008//
+/altq_cdnr.h/1.4/Mon Dec 16 17:27:20 2002//
+/altq_classq.h/1.4/Sun Apr 20 07:05:51 2008//
+/altq_hfsc.c/1.26/Thu May  8 15:22:02 2008//
+/altq_hfsc.h/1.6/Wed Jan 14 08:42:23 2004//
+/altq_priq.c/1.22/Thu May  8 15:22:02 2008//
+/altq_priq.h/1.6/Wed Jan 14 08:42:23 2004//
+/altq_red.c/1.16/Thu May  8 15:22:02 2008//
+/altq_red.h/1.5/Mon Dec 16 17:27:20 2002//
+/altq_rio.c/1.12/Thu May  8 15:22:02 2008//
+/altq_rio.h/1.6/Thu Mar 13 16:33:46 2003//
+/altq_rmclass.c/1.15/Thu May  8 15:22:02 2008//
+/altq_rmclass.h/1.11/Wed Aug 27 01:37:16 2008//
+/altq_rmclass_debug.h/1.4/Wed Aug 27 01:37:16 2008//
+/altq_subr.c/1.26/Fri May  9 14:10:05 2008//
+/altq_var.h/1.15/Sun Apr 20 07:05:52 2008//
+/if_altq.h/1.12/Sun May 31 19:15:59 2009//
+D

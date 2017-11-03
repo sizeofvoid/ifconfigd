@@ -1,0 +1,12 @@
+A D/atapi////
+A D/crypto////
+A D/ieee1394////
+A D/ppbus////
+A D/rcons////
+A D/std////
+R D/std////
+R D/rcons////
+R D/ppbus////
+R D/ieee1394////
+R D/crypto////
+R D/atapi////

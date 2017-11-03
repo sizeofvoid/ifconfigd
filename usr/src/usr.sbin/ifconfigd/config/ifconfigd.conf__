@@ -1,0 +1,165 @@
+# global configuration
+update_interval 90
+
+# Network one
+network "fhH" {
+	# ethernet network with priority RRRr
+	ethernet "local" {
+		interface em1
+		priority 1
+		# dhcp
+		# dhcp="yes" # default NO
+		# or static
+		domain-name omain
+		domain-name-servers "192.168.1.3, 192.168.1.5"
+		inet 192.168.2.23
+		netmask 255.255.255.0
+		lladdr 00:21:6a:5f:11:92
+
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+	# wireless network with priority 3
+	wireless "FHHwpa2" {
+		interface "iwn0"
+		priority 3
+
+		nwid "WLAN NAME"
+        bssid "00:21:6a:5f:11:92"
+		chan 6
+		minsignal 60 #%
+		# dhcp
+		#dhcp yes
+		# or static
+
+		wpa {
+			wpakey ""
+			wpagroupcipher ""
+			wpaciphers ""
+			wpaakms ""
+		}
+
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+
+	# wireless network with priority 5
+	wireless "wirless-vpn" {
+		interface iwn0
+		priority 5
+
+		nwid "WLAN NAME"
+		bssid "00:21:6a:5f:11:92"
+		chan 6
+		minsignal 60 
+		# dhcp
+		#dhcp yes
+		# or static
+
+		domain-name "my.domain"
+		domain-name-servers "192.168.1.3, 192.168.1.5"
+		inet 192.168.2.23
+		netmask 255.255.255.0
+
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+}
+
+network "fhh23" {
+	# ethernet network with priority 2
+	ethernet "local-fake-lladdr" {
+		interface "em0"
+		priority 2
+		# dhcp
+		#dhcp "yes"
+		# or static
+		lladdr "00:21:6a:5f:11:92"
+		
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+	# ethernet network with priority 2
+	ethernet "local" {
+		interface em1
+		priority 1
+		# dhcp
+		# dhcp="yes" # default NO
+		# or static
+		domain-name my.domain
+		domain-name-servers "192.168.1.3, 192.168.1.5"
+		inet 192.168.2.23
+		netmask 255.255.255.0
+		lladdr 00:21:6a:5f:11:92
+
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+	# wireless network with priority 3
+	wireless "FHHwpa2" {
+		interface "iwn0"
+		priority 3
+
+		nwid "WLAN NAME"
+        bssid "00:21:6a:5f:11:92"
+		chan 6
+		minsignal 60
+		# dhcp
+		#dhcp yes
+		# or static
+
+		wpa {
+			wpakey ""
+			wpagroupcipher ""
+			wpaciphers ""
+			wpaakms  ""
+		}
+
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+
+	# wireless network with priority 4
+	wireless "FHH-wep" {
+		interface "iwn0"
+		priority 4
+
+		nwid "WLAN NAME"
+        bssid "00:21:6a:5f:11:92"
+		chan 2
+		minsignal 60
+		# dhcp
+		#dhcp yes
+		# or static
+
+		wep {
+			wepkey "0x83237"
+		}
+
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+
+	# wireless network with priority 5
+	wireless "wirless-vpn" {
+		interface iwn0
+		priority 5
+
+		nwid "WLAN NAME"
+        bssid 00:21:6a:5f:11:92
+		chan 6
+		minsignal 60 
+		# dhcp
+		#dhcp yes
+		# or static
+
+		domain-name "my.domain"
+		domain-name-servers "192.168.1.3, 192.168.1.5"
+		inet 192.168.2.23
+		netmask 255.255.255.0
+
+		run-up "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is on"
+		run-down "Do some stuff if area goes on... like /usr/X11R6/bin/xmessage wirless-vpn is down"
+	}
+}
+

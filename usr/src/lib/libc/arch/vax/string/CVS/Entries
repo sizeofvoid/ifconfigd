@@ -1,0 +1,11 @@
+/Makefile.inc/1.7/Thu May 17 04:32:00 2007//
+/bcmp.S/1.4/Sun Aug  7 16:40:15 2005//
+/bcopy.S/1.5/Sun Aug  7 16:40:15 2005//
+/bzero.S/1.5/Sun Aug  7 16:40:15 2005//
+/ffs.S/1.4/Sun Aug  7 16:40:15 2005//
+/index.S/1.5/Sun Aug  7 16:40:15 2005//
+/memcmp.S/1.4/Sun Aug  7 16:40:15 2005//
+/memcpy.S/1.5/Sun Aug  7 16:40:15 2005//
+/memmove.S/1.5/Sun Aug  7 16:40:15 2005//
+/memset.S/1.5/Sun Aug  7 16:40:15 2005//
+D

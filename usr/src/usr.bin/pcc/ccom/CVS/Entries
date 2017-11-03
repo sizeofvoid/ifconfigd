@@ -1,0 +1,21 @@
+/Makefile/1.3/Mon Oct 22 13:38:43 2007//
+/Makefile.inc/1.4/Thu Aug 21 16:39:54 2008//
+/ccom.1/1.3/Fri Apr 11 20:45:52 2008//
+/cgram.y/1.10/Sun Aug 17 18:40:12 2008//
+/gcc_compat.c/1.6/Sun Aug 17 18:40:12 2008//
+/init.c/1.8/Sun Aug 17 18:40:12 2008//
+/inline.c/1.2/Sat Jan 12 17:26:16 2008//
+/main.c/1.6/Sun Aug 17 18:40:13 2008//
+/optim.c/1.4/Sun Aug 17 18:40:13 2008//
+/pass1.h/1.10/Sun Aug 17 18:40:13 2008//
+/pftn.c/1.14/Sun Aug 17 18:40:13 2008//
+/scan.l/1.6/Sun Aug 17 18:40:13 2008//
+/stabs.c/1.8/Sun Aug 17 18:40:13 2008//
+/symtabs.c/1.5/Sun Aug 17 18:40:13 2008//
+/trees.c/1.15/Sun Aug 17 18:40:13 2008//
+D/arm////
+D/hppa////
+D/i386////
+D/powerpc////
+D/sparc64////
+D/vax////

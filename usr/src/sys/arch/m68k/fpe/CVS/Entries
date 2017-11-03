@@ -1,0 +1,22 @@
+/README/1.4/Sun Nov 25 16:40:04 2007//
+/files.fpe/1.3/Mon Jan 16 22:08:26 2006//
+/fpu_add.c/1.4/Mon Jan 16 22:08:26 2006//
+/fpu_arith.h/1.4/Mon Jan 16 22:08:26 2006//
+/fpu_arith_proto.h/1.4/Mon Jan 16 22:08:26 2006//
+/fpu_calcea.c/1.11/Mon Jan 30 21:23:22 2006//
+/fpu_div.c/1.5/Sun Jun 11 20:43:28 2006//
+/fpu_emulate.c/1.16/Tue Jul 20 20:47:17 2010//
+/fpu_emulate.h/1.7/Sun Jun 11 20:43:28 2006//
+/fpu_explode.c/1.6/Sun Jun 11 20:43:28 2006//
+/fpu_fmovecr.c/1.8/Sun Jun 11 20:43:28 2006//
+/fpu_fscale.c/1.8/Sun Jun 11 20:43:28 2006//
+/fpu_fstore.c/1.6/Sun Jun 11 20:43:28 2006//
+/fpu_getexp.c/1.3/Sun Jun 11 20:43:28 2006//
+/fpu_implode.c/1.6/Sun Jun 11 20:43:28 2006//
+/fpu_int.c/1.5/Mon May 10 02:00:50 2010//
+/fpu_log.c/1.6/Sun Jun 11 20:43:28 2006//
+/fpu_mul.c/1.5/Sun Jun 11 20:43:28 2006//
+/fpu_rem.c/1.5/Sun Jun 11 20:43:28 2006//
+/fpu_sqrt.c/1.5/Sun Jun 11 20:43:28 2006//
+/fpu_subr.c/1.5/Sun Jun 11 20:43:28 2006//
+D

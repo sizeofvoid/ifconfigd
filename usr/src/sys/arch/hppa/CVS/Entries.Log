@@ -1,0 +1,10 @@
+A D/common////
+A D/eisa////
+A D/isa////
+A D/pci////
+A D/vme////
+R D/vme////
+R D/pci////
+R D/isa////
+R D/eisa////
+R D/common////

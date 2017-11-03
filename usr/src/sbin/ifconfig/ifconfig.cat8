@@ -1,0 +1,1083 @@
+IFCONFIG(8)             OpenBSD System Manager's Manual            IFCONFIG(8)
+
+NNAAMMEE
+     iiffccoonnffiigg - configure network interface parameters
+
+SSYYNNOOPPSSIISS
+     iiffccoonnffiigg [--AAaaCC] [_i_n_t_e_r_f_a_c_e] [_a_d_d_r_e_s_s___f_a_m_i_l_y] [_a_d_d_r_e_s_s [_d_e_s_t___a_d_d_r_e_s_s]]
+              [_p_a_r_a_m_e_t_e_r_s]
+
+DDEESSCCRRIIPPTTIIOONN
+     The iiffccoonnffiigg utility is used to assign an address to a network interface
+     and/or configure network interface parameters.  Generally speaking,
+     hostname.if(5) files are used at boot-time to define the network address
+     of each interface present on a machine; iiffccoonnffiigg is used at a later time
+     to redefine an interface's address or other operating parameters.
+
+     iiffccoonnffiigg displays the current configuration for a network interface when
+     no optional parameters are supplied.  If a protocol family is specified,
+     iiffccoonnffiigg will report only the details specific to that protocol family.
+     If no parameters are provided, a summary of all interfaces is provided.
+
+     Only the superuser may modify the configuration of a network interface.
+
+     The following options are available:
+
+     --AA      Causes full interface alias information for each interface to be
+             displayed.
+
+     --aa      Causes iiffccoonnffiigg to print information on all interfaces.  The
+             protocol family may be specified as well.  This is the default,
+             if no parameters are given to iiffccoonnffiigg.
+
+     --CC      Print the names of all network pseudo-devices that can be created
+             dynamically at runtime using iiffccoonnffiigg ccrreeaattee.
+
+     _i_n_t_e_r_f_a_c_e
+             The _i_n_t_e_r_f_a_c_e parameter is a string of the form ``name unit'',
+             for example, ``en0''.  If no optional parameters are supplied,
+             this string can instead be just ``name''.  If an interface group
+             of that name exists, all interfaces in the group will be shown.
+             Otherwise all interfaces of the same type will be displayed (for
+             example, ``fxp'' will display all fxp(4) interfaces).
+
+     _a_d_d_r_e_s_s___f_a_m_i_l_y
+             Specifies the address family which affects interpretation of the
+             remaining parameters.  Since an interface can receive
+             transmissions in differing protocols with different naming
+             schemes, specifying the address family is recommended.  The
+             address or protocol families currently supported are ``inet'',
+             ``inet6'', and ``atalk''.
+
+     _a_d_d_r_e_s_s
+             Internet version 4 and 6 addresses take the form of a host name
+             present in the host name database, hosts(5); ``dot'' notation
+             (IPv4); colon separated (IPv6); or CIDR notation.
+
+             AppleTalk (LLAP) addresses are specified as ``nn.na'' (``Network
+             Number.Node Address'').  Node addresses are divided into two
+             classes: User Node IDs and Server Node IDs.  1-127($01-$7F) are
+             for User Node IDs while 128-254($80-$FE) are used for Server Node
+             IDs.  Node 0($00) is not allowed (unknown) while Node 255($FF) is
+             reserved for the AppleTalk broadcast hardware address (broadcast
+             ID).
+
+     _d_e_s_t___a_d_d_r_e_s_s
+             Specify the address of the correspondent on the other end of a
+             point-to-point link.
+
+     The following _p_a_r_a_m_e_t_e_r_s may be set with iiffccoonnffiigg:
+
+     aalliiaass           Establish an additional network address for this
+                     interface.  This is sometimes useful when changing
+                     network numbers, and one wishes to accept packets
+                     addressed to the old interface.
+
+     --aalliiaass          A synonym for ddeelleettee.  Use of this option is discouraged
+                     in favour of ddeelleettee.
+
+     aarrpp             Enable the use of the Address Resolution Protocol (ARP)
+                     in mapping between network level addresses and link level
+                     addresses (default).  This is currently implemented for
+                     mapping between DARPA Internet addresses and Ethernet
+                     addresses.
+
+     --aarrpp            Disable the use of ARP.
+
+     bbrrooaaddccaasstt _a_d_d_r  (inet only) Specify the address to use to represent
+                     broadcasts to the network.  The default broadcast address
+                     is the address with a host part of all 1's.
+
+     ccrreeaattee          Create the specified network pseudo-device.  At least the
+                     following devices can be created on demand:
+
+                     bridge(4), carp(4), enc(4), faith(4), gif(4), gre(4),
+                     lo(4), mpe(4), pflog(4), pflow(4), pfsync(4), ppp(4),
+                     pppoe(4), sl(4), trunk(4), tun(4), vether(4), vlan(4)
+
+     ddeebbuugg           Enable driver-dependent debugging code; usually, this
+                     turns on extra console error logging.
+
+     --ddeebbuugg          Disable driver-dependent debugging code.
+
+     ddeelleettee          Remove the specified network address, including any
+                     netmask or destination address configured with this
+                     address.
+
+     ddeessccrriippttiioonn _v_a_l_u_e
+                     Specify a description of the interface.  This can be used
+                     to label interfaces in situations where they may
+                     otherwise be difficult to distinguish.
+
+     --ddeessccrriippttiioonn    Clear the interface description.
+
+     ddeessttrrooyy         Destroy the specified network pseudo-device.
+
+     ddoowwnn            Mark an interface ``down''.  When an interface is marked
+                     ``down'', the system will not attempt to transmit
+                     messages through that interface.  If possible, the
+                     interface will be reset to disable reception as well.
+                     This action automatically disables routes using the
+                     interface.
+
+     ggrroouupp _g_r_o_u_p_-_n_a_m_e
+                     Assign the interface to a ``group''.  Any interface can
+                     be in multiple groups.
+
+                     For instance, such a group could be used to create a
+                     hardware independent pf(4) ruleset (i.e. not one based on
+                     the names of NICs) using existing (egress, carp, etc.) or
+                     user-defined groups.
+
+                     Some interfaces belong to specific groups by default:
+
+                     --       All interfaces are members of the _a_l_l interface
+                             group.
+                     --       Cloned interfaces are members of their interface
+                             family group.  For example, a PPP interface such
+                             as _p_p_p_0 is a member of the _p_p_p interface family
+                             group.
+                     --       The interface(s) the default route(s) point to
+                             are members of the _e_g_r_e_s_s interface group.
+                     --       IEEE 802.11 wireless interfaces are members of
+                             the _w_l_a_n interface group.
+                     --       Any interfaces used for network booting are
+                             members of the _n_e_t_b_o_o_t interface group.
+
+     --ggrroouupp _g_r_o_u_p_-_n_a_m_e
+                     Remove the interface from the given ``group''.
+
+     --iinneett66          Disable inet6(4) on the given interface and remove all
+                     configured inet6(4) addresses, including the link-local
+                     ones.  To turn it on again, assign any inet6 address or
+                     run rtsol(8).
+
+     iinnssttaannccee _m_i_n_s_t  Set the media instance to _m_i_n_s_t.  This is useful for
+                     devices which have multiple physical layer interfaces
+                     (PHYs).  Setting the instance on such devices may not be
+                     strictly required by the network interface driver as the
+                     driver may take care of this automatically; see the
+                     driver's manual page for more information.
+
+     iippddsstt _a_d_d_r      This is used to specify an Internet host which is willing
+                     to receive IP packets encapsulating AppleTalk packets
+                     bound for a remote network.  An apparent point-to-point
+                     link is constructed, and the address specified will be
+                     taken as the address and network of the destination.  IP
+                     encapsulation of Connectionless Network Protocol
+                     (``CLNP'') packets is done differently.
+
+     lliinnkk[[00--22]]       Enable special processing of the link level of the
+                     interface.  These three options are interface specific in
+                     actual effect; however, they are in general used to
+                     select special modes of operation.  An example of this is
+                     to enable SLIP compression, or to select the connector
+                     type for some Ethernet cards.  Refer to the man page for
+                     the specific driver for more information.
+
+     --lliinnkk[[00--22]]      Disable special processing at the link level with the
+                     specified interface.
+
+     llllaaddddrr _e_t_h_e_r_a_d_d_r|rraannddoomm
+                     Change the link layer address (MAC address) of the
+                     interface.  This should be specified as six colon-
+                     separated hex values, or can be chosen randomly.
+
+     mmeeddiiaa [_t_y_p_e]    Set the media type of the interface to _t_y_p_e.  If no
+                     argument is given, display a list of all available media.
+
+                     Some interfaces support the mutually exclusive use of one
+                     of several different physical media connectors.  For
+                     example, a 10Mb/s Ethernet interface might support the
+                     use of either AUI or twisted pair connectors.  Setting
+                     the media type to ``10base5'' or ``AUI'' would change the
+                     currently active connector to the AUI port.  Setting it
+                     to ``10baseT'' or ``UTP'' would activate twisted pair.
+                     Refer to the interface's driver-specific man page for a
+                     complete list of the available types, or use the
+                     following command for a listing of choices:
+
+                           $ ifconfig interface media
+
+     mmeeddiiaaoopptt _o_p_t_s   Set the specified media options on the interface.  _o_p_t_s
+                     is a comma delimited list of options to apply to the
+                     interface.  Refer to the interface's driver-specific man
+                     page for a complete list of available options, or use the
+                     following command for a listing of choices:
+
+                           $ ifconfig interface media
+
+     --mmeeddiiaaoopptt _o_p_t_s  Disable the specified media options on the interface.
+
+     mmeettrriicc _n_h_o_p_s    Set the routing metric of the interface to _n_h_o_p_s, default
+                     0.  The routing metric can be used by routing protocols.
+                     Higher metrics have the effect of making a route less
+                     favorable.
+
+     mmooddee _m_o_d_e       If the driver for the interface supports the media
+                     selection system, set the specified operating mode on the
+                     interface to the given _m_o_d_e.  For IEEE 802.11 wireless
+                     interfaces that support multiple operating modes, this
+                     directive is used to select between 802.11a (``11a''),
+                     802.11b (``11b''), and 802.11g (``11g'') operating modes.
+
+     mmppllss            Enable Multiprotocol Label Switching (MPLS) on the
+                     interface, allowing it to send and receive MPLS traffic.
+
+     --mmppllss           Disable MPLS on the interface.
+
+     mmttuu _v_a_l_u_e       Set the MTU for this device to the given _v_a_l_u_e.  Cloned
+                     routes will inherit this value as a default.  Currently,
+                     not all devices support setting the MTU.
+
+     nneettmmaasskk _m_a_s_k    (inet and inet6) Specify how much of the address to
+                     reserve for subdividing networks into subnetworks.  The
+                     mask includes the network part of the local address and
+                     the subnet part, which is taken from the host field of
+                     the address.  The mask can be specified as a single
+                     hexadecimal number with a leading 0x, with a dot-notation
+                     Internet address, or with a pseudo-network name listed in
+                     the network table networks(5).  The mask contains 1's for
+                     the bit positions in the 32-bit address which are to be
+                     used for the network and subnet parts, and 0's for the
+                     host part.  The mask should contain at least the standard
+                     network portion, and the subnet field should be
+                     contiguous with the network portion.
+
+     pphhaassee _n         The argument _n specifies the version (phase) of the
+                     AppleTalk network attached to the interface.  Values of 1
+                     or 2 are permitted.
+
+     pprreeffiixxlleenn _n     (inet and inet6 only) Effect is similar to nneettmmaasskk, but
+                     you can specify prefix length by digits.
+
+     pprriioorriittyy _n      Set the interface routing priority to _n.  This will
+                     influence the default routing priority of new static
+                     routes added to the kernel.  _n is in the range of 0 to 16
+                     with smaller numbers being better.
+
+     rraannggee _n_e_t_r_a_n_g_e  Under AppleTalk, set the interface to respond to a
+                     _n_e_t_r_a_n_g_e of the form ``startnet-endnet''.  AppleTalk uses
+                     this scheme instead of netmasks though OpenBSD implements
+                     it internally as a set of netmasks.
+
+     rrddoommaaiinn _r_o_u_t_e_-_i_d
+                     Attach the interface to the routing table with the
+                     specified _r_o_u_t_e_-_i_d.  Interfaces in different routing
+                     domains are separated and can not directly pass traffic
+                     between each other.  By default all interfaces belong to
+                     routing table 0.
+
+     rrttllaabbeell _r_o_u_t_e_-_l_a_b_e_l
+                     (inet) Attach _r_o_u_t_e_-_l_a_b_e_l to new network routes of the
+                     specified interface.  Route labels can be used to
+                     implement policy routing; see route(4), route(8), and
+                     pf.conf(5).
+
+     --rrttllaabbeell        Clear the route label.
+
+     ttiimmeesslloott _t_i_m_e_s_l_o_t___r_a_n_g_e
+                     Set the timeslot range map, which is used to control
+                     which channels an interface device uses.
+
+     uupp              Mark an interface ``up''.  This may be used to enable an
+                     interface after an iiffccoonnffiigg ddoowwnn.  It happens
+                     automatically when setting the first address on an
+                     interface.  If the interface was reset when previously
+                     marked down, the hardware will be re-initialized.
+
+
+     wwooll             Enable Wake on LAN (WoL).  When enabled, reception of a
+                     WoL frame will cause the network card to power up the
+                     system from standby or suspend mode.  WoL frames are sent
+                     using arp(8).
+
+     --wwooll            Disable WoL.  WoL is disabled at boot by the driver, if
+                     possible.
+
+     iiffccoonnffiigg supports a multitude of sub-types, described in the following
+     sections:
+
+           --   bridge(4)
+           --   carp(4)
+           --   IEEE 802.11 (wireless devices)
+           --   inet6(4)
+           --   interface groups
+           --   mpe(4)
+           --   pflow(4)
+           --   pfsync(4)
+           --   pppoe(4)
+           --   sppp(4) (PPP Link Control Protocol)
+           --   trunk(4)
+           --   tunnel (gif(4) and gre(4))
+           --   vlan(4)
+
+BBRRIIDDGGEE
+     The following options are available for a bridge(4) interface:
+
+     aadddd _i_n_t_e_r_f_a_c_e
+             Add _i_n_t_e_r_f_a_c_e as a member of the bridge.  The interface is put
+             into promiscuous mode so that it can receive every packet sent on
+             the network.  An interface can be a member of at most one bridge.
+
+     aaddddrr    Display the addresses that have been learned by the bridge.
+
+     aaddddssppaann _i_n_t_e_r_f_a_c_e
+             Add _i_n_t_e_r_f_a_c_e as a span port on the bridge.
+
+     aauuttooeeddggee _i_n_t_e_r_f_a_c_e
+             Automatically detect the spanning tree edge port status on
+             _i_n_t_e_r_f_a_c_e.  This is the default for interfaces added to the
+             bridge.
+
+     --aauuttooeeddggee _i_n_t_e_r_f_a_c_e
+             Disable automatic spanning tree edge port detection on _i_n_t_e_r_f_a_c_e.
+
+     aauuttooppttpp _i_n_t_e_r_f_a_c_e
+             Automatically detect the point-to-point status on _i_n_t_e_r_f_a_c_e by
+             checking the full duplex link status.  This is the default for
+             interfaces added to the bridge.
+
+     --aauuttooppttpp _i_n_t_e_r_f_a_c_e
+             Disable automatic point-to-point link detection on _i_n_t_e_r_f_a_c_e.
+
+     bblloocckknnoonniipp _i_n_t_e_r_f_a_c_e
+             Mark _i_n_t_e_r_f_a_c_e so that no non-IPv4, IPv6, ARP, or Reverse ARP
+             packets are accepted from it or forwarded to it from other bridge
+             member interfaces.
+
+     --bblloocckknnoonniipp _i_n_t_e_r_f_a_c_e
+             Allow non-IPv4, IPv6, ARP, or Reverse ARP packets through
+             _i_n_t_e_r_f_a_c_e.
+
+     ddeell _i_n_t_e_r_f_a_c_e
+             Alias for ddeelleettee.
+
+     ddeellaaddddrr _a_d_d_r_e_s_s
+             Delete _a_d_d_r_e_s_s from the cache.
+
+     ddeelleettee _i_n_t_e_r_f_a_c_e
+             Remove _i_n_t_e_r_f_a_c_e from the bridge.  Promiscuous mode is turned off
+             for the interface when it is removed from the bridge.
+
+     ddeellssppaann _i_n_t_e_r_f_a_c_e
+             Delete _i_n_t_e_r_f_a_c_e from the list of span ports of the bridge.
+
+     ddiissccoovveerr _i_n_t_e_r_f_a_c_e
+             Mark _i_n_t_e_r_f_a_c_e so that packets are sent out of the interface if
+             the destination port of the packet is unknown.  If the bridge has
+             no address cache entry for the destination of a packet, meaning
+             that there is no static entry and no dynamically learned entry
+             for the destination, the bridge will forward the packet to all
+             member interfaces that have this flag set.  This is the default
+             for interfaces added to the bridge.
+
+     --ddiissccoovveerr _i_n_t_e_r_f_a_c_e
+             Mark _i_n_t_e_r_f_a_c_e so that packets are not sent out of the interface
+             if the destination port of the packet is unknown.  Turning this
+             flag off means that the bridge will not send packets out of this
+             interface unless the packet is a broadcast packet, multicast
+             packet, or a packet with a destination address found on the
+             interface's segment.  This, in combination with static address
+             cache entries, prevents potentially sensitive packets from being
+             sent on segments that have no need to see the packet.
+
+     ddoowwnn    Stop the bridge from forwarding packets.
+
+     eeddggee _i_n_t_e_r_f_a_c_e
+             Set _i_n_t_e_r_f_a_c_e as a spanning tree edge port.  An edge port is a
+             single connection to the network and cannot create bridge loops.
+             This allows a straight transition to forwarding.
+
+     --eeddggee _i_n_t_e_r_f_a_c_e
+             Disable edge port status on _i_n_t_e_r_f_a_c_e.
+
+     fflluusshh   Remove all dynamically learned addresses from the cache.
+
+     fflluusshhaallll
+             Remove all addresses from the cache including static addresses.
+
+     fflluusshhrruullee _i_n_t_e_r_f_a_c_e
+             Remove all Ethernet MAC filtering rules from _i_n_t_e_r_f_a_c_e.
+
+     ffwwddddeellaayy _t_i_m_e
+             Set the time (in seconds) before an interface begins forwarding
+             packets.  Defaults to 15 seconds, minimum of 4, maximum of 30.
+
+     hheelllloottiimmee _t_i_m_e
+             Set the time (in seconds) between broadcasting spanning tree
+             protocol configuration packets.  Defaults to 2 seconds, minimum
+             of 1, maximum of 2.  This option is only supported in STP mode
+             with rapid transitions disabled; see the pprroottoo command for
+             setting the protocol version.
+
+     hhoollddccnntt _t_i_m_e
+             Set the transmit hold count, which is the number of spanning tree
+             protocol packets transmitted before being rate limited.  Defaults
+             to 6, minimum of 1, maximum of 10.
+
+     iiffccoosstt _i_n_t_e_r_f_a_c_e _n_u_m
+             Set the spanning tree path cost of _i_n_t_e_r_f_a_c_e to _n_u_m.  Defaults to
+             55, minimum of 1, maximum of 200000000 in RSTP mode, and maximum
+             of 65535 in STP mode.
+
+     --iiffccoosstt _i_n_t_e_r_f_a_c_e
+             Automatically calculate the spanning tree priority of _i_n_t_e_r_f_a_c_e
+             based on the current link speed, interface status, and spanning
+             tree mode.  This is the default for interfaces added to the
+             bridge.
+
+     iiffpprriioorriittyy _i_n_t_e_r_f_a_c_e _n_u_m
+             Set the spanning tree priority of _i_n_t_e_r_f_a_c_e to _n_u_m.  Defaults to
+             128, minimum of 0, maximum of 240.
+
+     lleeaarrnn _i_n_t_e_r_f_a_c_e
+             Mark _i_n_t_e_r_f_a_c_e so that the source address of packets received
+             from the interface are entered into the address cache.  This is
+             the default for interfaces added to the bridge.
+
+     --lleeaarrnn _i_n_t_e_r_f_a_c_e
+             Mark _i_n_t_e_r_f_a_c_e so that the source address of packets received
+             from interface are not entered into the address cache.
+
+     lliinnkk00   Setting this flag stops all IP multicast packets from being
+             forwarded by the bridge.
+
+     --lliinnkk00  Clear the lliinnkk00 flag on the bridge interface.
+
+     lliinnkk11   Setting this flag stops all non-IP multicast packets from being
+             forwarded by the bridge.
+
+     --lliinnkk11  Clear the lliinnkk11 flag on the bridge interface.
+
+     lliinnkk22   Setting this flag causes all packets to be passed on to ipsec(4)
+             for processing, based on the policies established by the
+             administrator using the ipsecctl(8) command and ipsec.conf(5).
+             If appropriate security associations (SAs) exist, they will be
+             used to encrypt or decrypt the packets.  Otherwise, any key
+             management daemons such as isakmpd(8) that are running on the
+             bridge will be invoked to establish the necessary SAs.  These
+             daemons have to be configured as if they were running on the host
+             whose traffic they are protecting (i.e. they need to have the
+             appropriate authentication and authorization material, such as
+             keys and certificates, to impersonate the protected host(s)).
+
+     --lliinnkk22  Clear the lliinnkk22 flag on the bridge interface.
+
+     mmaaxxaaddddrr _s_i_z_e
+             Set the address cache size to _s_i_z_e.  The default is 100 entries.
+
+     mmaaxxaaggee _t_i_m_e
+             Set the time (in seconds) that a spanning tree protocol
+             configuration is valid.  Defaults to 20 seconds, minimum of 6,
+             maximum of 40.
+
+     pprroottoo _v_a_l_u_e
+             Force the spanning tree protocol version.  The available values
+             are _r_s_t_p to operate in the default Rapid Spanning Tree (RSTP)
+             mode or _s_t_p to force operation in Spanning Tree (STP) mode with
+             rapid transitions disabled.
+
+     ppttpp _i_n_t_e_r_f_a_c_e
+             Set _i_n_t_e_r_f_a_c_e as a point-to-point link.  This is required for
+             straight transitions to forwarding and should be enabled for a
+             full duplex link or a trunk(4) with at least two physical links
+             to the same network segment.
+
+     --ppttpp _i_n_t_e_r_f_a_c_e
+             Disable point-to-point link status on _i_n_t_e_r_f_a_c_e.  This should be
+             disabled for a half duplex link and for an interface connected to
+             a shared network segment, like a hub or a wireless network.
+
+     rruullee bblloocckk|ppaassss [iinn | oouutt] oonn _i_n_t_e_r_f_a_c_e [ssrrcc _a_d_d_r_e_s_s] [ddsstt _a_d_d_r_e_s_s] [ttaagg
+              _t_a_g_n_a_m_e]
+             Add a filtering rule to an interface.  Rules have a similar
+             syntax to those in pf.conf(5).  Rules can be used to selectively
+             block or pass frames based on Ethernet MAC addresses.  They can
+             also tag packets for pf(4) to filter on.  Rules are processed in
+             the order in which they were added to the interface, and the
+             first rule matched takes the action (block or pass) and, if
+             given, the tag of the rule.  If no source or destination address
+             is specified, the rule will match all frames (good for creating a
+             catchall policy).
+
+     rruulleeffiillee _f_i_l_e_n_a_m_e
+             Load a set of rules from the file _f_i_l_e_n_a_m_e.
+
+     rruulleess _i_n_t_e_r_f_a_c_e
+             Display the active filtering rules in use on _i_n_t_e_r_f_a_c_e.
+
+     ssppaannpprriioorriittyy _n_u_m
+             Set the spanning priority of this bridge to _n_u_m.  Defaults to
+             32768, minimum of 0, maximum of 61440.
+
+     ssttaattiicc _i_n_t_e_r_f_a_c_e _a_d_d_r_e_s_s
+             Add a static entry into the address cache pointing to _i_n_t_e_r_f_a_c_e.
+             Static entries are never aged out of the cache or replaced, even
+             if the address is seen on a different interface.
+
+     ssttpp _i_n_t_e_r_f_a_c_e
+             Enable spanning tree protocol on _i_n_t_e_r_f_a_c_e.
+
+     --ssttpp _i_n_t_e_r_f_a_c_e
+             Disable spanning tree protocol on _i_n_t_e_r_f_a_c_e.  This is the default
+             for interfaces added to the bridge.
+
+     ttiimmeeoouutt _t_i_m_e
+             Set the timeout, in seconds, for addresses in the cache to _t_i_m_e.
+             The default is 240 seconds.  If _t_i_m_e is set to zero, then entries
+             will not be expired.
+
+     uupp      Start the bridge forwarding packets.
+
+CCAARRPP
+     iiffccoonnffiigg _c_a_r_p_-_i_n_t_e_r_f_a_c_e [aaddvvbbaassee _n] [aaddvvsskkeeww _n] [bbaallaanncciinngg _m_o_d_e]
+              [ccaarrppnnooddeess _v_h_i_d_:_a_d_v_s_k_e_w_,_v_h_i_d_:_a_d_v_s_k_e_w_,_._._.] [ccaarrppddeevv _i_f_a_c_e]
+              [[--]ccaarrppppeeeerr _p_e_e_r___a_d_d_r_e_s_s] [ppaassss _p_a_s_s_p_h_r_a_s_e] [ssttaattee _s_t_a_t_e]
+              [vvhhiidd _h_o_s_t_-_i_d]
+
+     The following options are available for a carp(4) interface:
+
+     aaddvvbbaassee _n
+             Set the base advertisement interval to _n seconds.  This is an 8-
+             bit number; the default value is 1 second.
+
+     aaddvvsskkeeww _n
+             Skew the advertisement interval by _n.  This is an 8-bit number;
+             the default value is 0.
+
+     bbaallaanncciinngg _m_o_d_e
+             Set the load balancing mode to _m_o_d_e.  Valid modes are _a_r_p, _i_p,
+             _i_p_-_s_t_e_a_l_t_h, and _i_p_-_u_n_i_c_a_s_t.
+
+     ccaarrppnnooddeess _v_h_i_d_:_a_d_v_s_k_e_w_,_v_h_i_d_:_a_d_v_s_k_e_w_,_._._.
+             Create a load balancing group consisting of up to 32 nodes.  Each
+             node is specified as a _v_h_i_d_:_a_d_v_s_k_e_w tuple in a comma separated
+             list.
+
+     ccaarrppddeevv _i_f_a_c_e
+             Attach to _i_f_a_c_e.  If not specified, the kernel will attempt to
+             select an interface with a subnet matching that of the carp
+             interface.
+
+     ccaarrppppeeeerr _p_e_e_r___a_d_d_r_e_s_s
+             Send the carp advertisements to a specified point-to-point peer
+             or multicast group instead of sending the messages to the default
+             carp multicast group.  The _p_e_e_r___a_d_d_r_e_s_s is the IP address of the
+             other host taking part in the carp cluster.  With this option,
+             carp(4) traffic can be protected using ipsec(4) and it may be
+             desired in networks that do not allow or have problems with IPv4
+             multicast traffic.
+
+     --ccaarrppppeeeerr
+             Send the advertisements to the default carp multicast group.
+
+     ppaassss _p_a_s_s_p_h_r_a_s_e
+             Set the authentication key to _p_a_s_s_p_h_r_a_s_e.  There is no passphrase
+             by default.
+
+     ssttaattee _s_t_a_t_e
+             Explicitly force the interface to enter this state.  Valid states
+             are _i_n_i_t, _b_a_c_k_u_p, and _m_a_s_t_e_r.
+
+     vvhhiidd _n  Set the virtual host ID to _n.  Acceptable values are 1 to 255.
+
+     Taken together, the aaddvvbbaassee and aaddvvsskkeeww indicate how frequently, in
+     seconds, the host will advertise the fact that it considers itself master
+     of the virtual host.  The formula is aaddvvbbaassee + (aaddvvsskkeeww / 256).  If the
+     master does not advertise within three times this interval, this host
+     will begin advertising as master.
+
+IIEEEEEE 880022..1111 ((WWIIRREELLEESSSS DDEEVVIICCEESS))
+     iiffccoonnffiigg _w_i_r_e_l_e_s_s_-_i_n_t_e_r_f_a_c_e [[--]bbssssiidd _b_s_s_i_d] [[--]cchhaann [_n]]
+              [[--]nnwwffllaagg _f_l_a_g] [[--]nnwwiidd _i_d] [[--]nnwwkkeeyy _k_e_y]
+              [[--]ppoowweerrssaavvee [_d_u_r_a_t_i_o_n]] [ssccaann] [[--]ttxxppoowweerr _d_B_m] [[--]wwppaa]
+              [wwppaaaakkmmss _a_k_m_,_a_k_m_,_._._.] [wwppaacciipphheerrss _c_i_p_h_e_r_,_c_i_p_h_e_r_,_._._.]
+              [wwppaaggrroouuppcciipphheerr _c_i_p_h_e_r] [[--]wwppaakkeeyy _p_a_s_s_p_h_r_a_s_e | _h_e_x_k_e_y]
+              [wwppaapprroottooss _p_r_o_t_o_,_p_r_o_t_o_,_._._.]
+
+     The following options are available for a wireless interface:
+
+     bbssssiidd _b_s_s_i_d
+             Set the desired BSSID.
+
+     --bbssssiidd  Unset the desired BSSID.  The interface will automatically select
+             a BSSID in this mode, which is the default.
+
+     cchhaann [_n]
+             Set the channel (radio frequency) to _n.
+
+             With no channel specified, show the list of channels supported by
+             the device.
+
+     --cchhaann   Unset the desired channel.  It doesn't affect the channel to be
+             created for IBSS or Host AP mode.
+
+     nnwwffllaagg _f_l_a_g
+             Set specified flag.  The flag name can be either `hidenwid' or
+             `nobridge'.  The `hidenwid' flag will hide the network ID (ESSID)
+             in beacon frames when operating in Host AP mode.  It will also
+             prevent responses to probe requests with an unspecified network
+             ID.  The `nobridge' flag will disable the direct bridging of
+             frames between associated nodes when operating in Host AP mode.
+             Setting this flag will block and filter direct inter-station
+             communications.
+
+             Note that the `hidenwid' and `nobridge' options do not provide
+             any security.  The hidden network ID will be sent in clear text
+             by associating stations and can be easily discovered with tools
+             like tcpdump(8) and hostapd(8).
+
+     --nnwwffllaagg _f_l_a_g
+             Remove specified flag.
+
+     nnwwiidd _i_d
+             Configure network ID.  The _i_d can either be any text string up to
+             32 characters in length, or a series of hexadecimal digits up to
+             64 digits.  The empty string allows the interface to connect to
+             any available access points.  Note that network ID is synonymous
+             with Extended Service Set ID (ESSID).
+
+     --nnwwiidd   Set the network ID to the empty string to allow the interface to
+             connect to any available access point.
+
+     nnwwkkeeyy _k_e_y
+             Enable WEP encryption using the specified _k_e_y.  The _k_e_y can
+             either be a string, a series of hexadecimal digits (preceded by
+             `0x'), or a set of keys of the form ``n:k1,k2,k3,k4'' where `n'
+             specifies which of the keys will be used for transmitted packets,
+             and the four keys, ``k1'' through ``k4'', are configured as WEP
+             keys.  If a set of keys is specified, a comma (`,') within the
+             key must be escaped with a backslash.  Note that if multiple keys
+             are used, their order must be the same within the network.  The
+             length of each key must be either 40 bits, i.e. a 5-character
+             string or 10 hexadecimal digits or 104 bits (13-character).
+
+     --nnwwkkeeyy  Disable WEP encryption.
+
+     nnwwkkeeyy ppeerrssiisstt
+             Enable WEP encryption using the persistent key stored in the
+             network card.
+
+     nnwwkkeeyy ppeerrssiisstt:_k_e_y
+             Write _k_e_y to the persistent memory of the network card, and
+             enable WEP encryption using that _k_e_y.
+
+     ppoowweerrssaavvee [_d_u_r_a_t_i_o_n]
+             Enable 802.11 power saving mode.  Optionally set the receiver
+             sleep duration (in milliseconds).
+
+     --ppoowweerrssaavvee
+             Disable 802.11 power saving mode.
+
+     ssccaann    Show the results of an access point scan.  In Host AP mode, this
+             will dump the list of known nodes without scanning.
+
+     ttxxppoowweerr _d_B_m
+             Set the transmit power.  The driver will disable any auto level
+             and transmit power controls in this mode.
+
+     --ttxxppoowweerr
+             Disable manual transmit power mode and enable any auto level and
+             transmit power controls.
+
+     wwppaa     Enable Wi-Fi Protected Access.  WPA is a Wi-Fi Alliance protocol
+             based on the IEEE 802.11i standard.  It was designed to enhance
+             the security of wireless networks.  Notice that not all drivers
+             support WPA.  Check the driver's manual page to know if this
+             option is supported.
+
+     --wwppaa    Disable Wi-Fi Protected Access.
+
+     wwppaaaakkmmss _a_k_m_,_a_k_m_,_._._.
+             Set the comma-separated list of allowed authentication and key
+             management protocols.
+
+             The supported values are ``psk'' and ``802.1x''.  _p_s_k
+             authentication (also known as personal mode) uses a 256-bit pre-
+             shared key.  _8_0_2_._1_x authentication (also known as enterprise
+             mode) is meant to be used with an external IEEE 802.1X
+             authentication server, but is currently unsupported.  The default
+             value is ``psk''.  ``psk'' can only be used if a pre-shared key
+             is configured using the wwppaakkeeyy option.
+
+     wwppaacciipphheerrss _c_i_p_h_e_r_,_c_i_p_h_e_r_,_._._.
+             Set the comma-separated list of allowed pairwise ciphers.
+
+             The supported values are ``tkip'', ``ccmp'', and ``usegroup''.
+             _u_s_e_g_r_o_u_p specifies that no pairwise ciphers are supported and
+             that only group keys should be used.  The default value is
+             ``tkip,ccmp''.  If multiple pairwise ciphers are specified, the
+             pairwise cipher will be negotiated between the station and the
+             access point at association time.  A station will always try to
+             use _c_c_m_p over _t_k_i_p if both ciphers are allowed and supported by
+             the access point.  If the selected cipher is not supported by the
+             hardware, software encryption will be used.  Check the driver's
+             manual page to know which ciphers are supported in hardware.
+
+     wwppaaggrroouuppcciipphheerr _c_i_p_h_e_r
+             Set the group cipher used to encrypt broadcast and multicast
+             traffic.
+
+             The supported values are ``wep40'', ``wep104'', ``tkip'', and
+             ``ccmp''.  The default value is ``tkip''.  The use of _w_e_p_4_0 or
+             _w_e_p_1_0_4 as the group cipher is discouraged due to weaknesses in
+             WEP.  The wwppaaggrroouuppcciipphheerr option is available in Host AP mode
+             only.  A station will always use the group cipher of the BSS.
+
+     wwppaakkeeyy _p_a_s_s_p_h_r_a_s_e | _h_e_x_k_e_y
+             Set the WPA key and enable WPA.  The key can be given using
+             either a passphrase or a full length hex key, starting with 0x.
+             If a passphrase is used the nnwwiidd option must be set prior to
+             specifying the wwppaakkeeyy option, since iiffccoonnffiigg will hash the nwid
+             along with the passphrase to create the key.
+
+     --wwppaakkeeyy
+             Delete the pre-shared WPA key and disable WPA.
+
+     wwppaapprroottooss _p_r_o_t_o_,_p_r_o_t_o_,_._._.
+             Set the comma-separated list of allowed WPA protocol versions.
+
+             The supported values are ``wpa1'' and ``wpa2''.  _w_p_a_1 is based on
+             draft 3 of the IEEE 802.11i standard whereas _w_p_a_2 is based on the
+             ratified standard.  The default value is ``wpa1,wpa2''.  If
+             ``wpa1,wpa2'' is specified, a station will always use the _w_p_a_2
+             protocol when supported by the access point.
+
+IINNEETT66
+     iiffccoonnffiigg _i_n_e_t_6_-_i_n_t_e_r_f_a_c_e [[--]aannyyccaasstt] [[--]aauuttooccoonnffpprriivvaaccyy] [eeuuii6644]
+              [ppllttiimmee _n] [[--]tteennttaattiivvee] [vvllttiimmee _n]
+
+     The following options are available for an ip6(4) interface:
+
+     aannyyccaasstt
+             Set the IPv6 anycast address bit.
+
+     --aannyyccaasstt
+             Clear the IPv6 anycast address bit.
+
+     aauuttooccoonnffpprriivvaaccyy
+             Enable privacy extensions for stateless IPv6 address
+             autoconfiguration (RFC 4941) on the interface.  The purpose of
+             these extensions is to prevent tracking of individual devices
+             which connect to the IPv6 internet from different networks using
+             stateless autoconfiguration.  The interface identifier often
+             remains constant and provides the lower 64 bits of an
+             autoconfigured IPv6 address, facilitating tracking of individual
+             devices (and hence, potentially, users of these devices) over
+             long periods of time (weeks to months to years).  When these
+             extensions are active, random interface identifiers are used for
+             autoconfigured addresses.
+
+             Autoconfigured addresses are also made temporary, which means
+             that they will automatically be replaced regularly.  Temporary
+             addresses are deprecated after 24 hours.  Once a temporary
+             address has been deprecated, a new temporary address will be
+             configured upon reception of a router advertisement indicating
+             that the prefix is still valid.  Deprecated addresses will not be
+             used for new connections as long as a non-deprecated address
+             remains available.  Temporary addresses become invalid after one
+             week, at which time they will be removed from the interface.
+             Address lifetime extension through router advertisements is
+             ignored for temporary addresses.
+
+     --aauuttooccoonnffpprriivvaaccyy
+             Disable IPv6 autoconf privacy extensions on the interface.
+             Currently configured addresses will not be removed until they
+             become invalid.
+
+     eeuuii6644   Fill the interface index (the lowermost 64th bit of an IPv6
+             address) automatically.
+
+     ppllttiimmee _n
+             Set preferred lifetime for the address.
+
+     tteennttaattiivvee
+             Set the IPv6 tentative address bit.
+
+     --tteennttaattiivvee
+             Clear the IPv6 tentative address bit.
+
+     vvllttiimmee _n
+             Set valid lifetime for the address.
+
+IINNTTEERRFFAACCEE GGRROOUUPPSS
+     iiffccoonnffiigg --gg _g_r_o_u_p_-_n_a_m_e [[--]ccaarrppddeemmoottee [_n_u_m_b_e_r]]
+
+     The following options are available for interface groups:
+
+     --gg _g_r_o_u_p_-_n_a_m_e
+             Specify the group.
+
+     ccaarrppddeemmoottee [_n_u_m_b_e_r]
+             Increase carp(4) demote count for given interface group by
+             _n_u_m_b_e_r.  If _n_u_m_b_e_r is omitted, it is increased by 1.
+
+     --ccaarrppddeemmoottee [_n_u_m_b_e_r]
+             Decrease carp(4) demote count for given interface group by
+             _n_u_m_b_e_r.  If _n_u_m_b_e_r is omitted, it is decreased by 1.
+
+MMPPEE
+     iiffccoonnffiigg _m_p_e_-_i_n_t_e_r_f_a_c_e [mmppllssllaabbeell _m_p_l_s_-_l_a_b_e_l]
+
+     The following options are available for an mpe(4) interface:
+
+     mmppllssllaabbeell _m_p_l_s_-_l_a_b_e_l
+             Set the MPLS label to _m_p_l_s_-_l_a_b_e_l.  This value is a 20-bit number
+             which will be used as the MPLS header for packets entering the
+             MPLS domain.
+
+PPFFLLOOWW
+     iiffccoonnffiigg _p_f_l_o_w_-_i_n_t_e_r_f_a_c_e [[--]fflloowwddsstt _a_d_d_r:_p_o_r_t] [[--]fflloowwssrrcc _a_d_d_r]
+
+     The following options are available for a pflow(4) interface:
+
+     fflloowwddsstt _a_d_d_r:_p_o_r_t
+             Set the receiver address and the port for pflow(4) packets.  Both
+             must be defined to export pflow data.  _a_d_d_r is the IP address and
+             _p_o_r_t is the port number of the flow collector.  Pflow data will
+             be sent to this address/port.
+
+     --fflloowwddsstt
+             Unset the receiver address and stop sending pflow data.
+
+     fflloowwssrrcc _a_d_d_r
+             Set the source IP address for pflow packets.  _a_d_d_r is the IP
+             address used as sender of the UDP packets and may be used to
+             identify the source of the data on the pflow collector.
+
+     --fflloowwssrrcc
+             Unset the source address.
+
+PPFFSSYYNNCC
+     iiffccoonnffiigg _p_f_s_y_n_c_-_i_n_t_e_r_f_a_c_e [[--]ddeeffeerr] [mmaaxxuuppdd _n] [[--]ssyynnccddeevv _i_f_a_c_e]
+              [[--]ssyynnccppeeeerr _p_e_e_r___a_d_d_r_e_s_s]
+
+     The following options are available for a pfsync(4) interface:
+
+     ddeeffeerr   Defer transmission of the first packet in a state until a peer
+             has acknowledged that the associated state has been inserted.
+             See pfsync(4) for more information.
+
+     --ddeeffeerr  Do not defer the first packet in a state.  This is the default.
+
+     mmaaxxuuppdd _n
+             Indicate the maximum number of updates for a single state which
+             can be collapsed into one.  This is an 8-bit number; the default
+             value is 128.
+
+     ssyynnccddeevv _i_f_a_c_e
+             Use the specified interface to send and receive pfsync state
+             synchronisation messages.
+
+     --ssyynnccddeevv
+             Stop sending pfsync state synchronisation messages over the
+             network.
+
+     ssyynnccppeeeerr _p_e_e_r___a_d_d_r_e_s_s
+             Make the pfsync link point-to-point rather than using multicast
+             to broadcast the state synchronisation messages.  The
+             peer_address is the IP address of the other host taking part in
+             the pfsync cluster.  With this option, pfsync(4) traffic can be
+             protected using ipsec(4).
+
+     --ssyynnccppeeeerr
+             Broadcast the packets using multicast.
+
+PPPPPPOOEE
+     iiffccoonnffiigg _p_p_p_o_e_-_i_n_t_e_r_f_a_c_e [aauutthhkkeeyy _k_e_y] [aauutthhnnaammee _n_a_m_e] [aauutthhpprroottoo _p_r_o_t_o]
+              [[--]ppeeeerrffllaagg _f_l_a_g] [ppeeeerrkkeeyy _k_e_y] [ppeeeerrnnaammee _n_a_m_e]
+              [ppeeeerrpprroottoo _p_r_o_t_o] [[--]ppppppooeeaacc _a_c_c_e_s_s_-_c_o_n_c_e_n_t_r_a_t_o_r]
+              [ppppppooeeddeevv _p_a_r_e_n_t_-_i_n_t_e_r_f_a_c_e] [[--]ppppppooeessvvcc _s_e_r_v_i_c_e]
+
+     pppoe(4) uses the sppp(4) "generic" SPPP framework.  Any options not
+     described in the section immediately following are described in the _S_P_P_P
+     section, below.
+
+     The following options are available for a pppoe(4) interface:
+
+     ppppppooeeaacc _a_c_c_e_s_s_-_c_o_n_c_e_n_t_r_a_t_o_r
+             Set the name of the access-concentrator.
+
+     --ppppppooeeaacc
+             Clear a previously set access-concentrator name.
+
+     ppppppooeeddeevv _p_a_r_e_n_t_-_i_n_t_e_r_f_a_c_e
+             Set the name of the interface through which packets will be
+             transmitted and received.
+
+     ppppppooeessvvcc _s_e_r_v_i_c_e
+             Set the service name of the interface.
+
+     --ppppppooeessvvcc
+             Clear a previously set service name.
+
+SSPPPPPP ((PPPPPP LLIINNKK CCOONNTTRROOLL PPRROOTTOOCCOOLL))
+     iiffccoonnffiigg _s_p_p_p_-_i_n_t_e_r_f_a_c_e [aauutthhkkeeyy _k_e_y] [aauutthhnnaammee _n_a_m_e] [aauutthhpprroottoo _p_r_o_t_o]
+              [[--]ppeeeerrffllaagg _f_l_a_g] [ppeeeerrkkeeyy _k_e_y] [ppeeeerrnnaammee _n_a_m_e]
+              [ppeeeerrpprroottoo _p_r_o_t_o]
+
+     The following options are available for an sppp(4) or pppoe(4) interface:
+
+     aauutthhkkeeyy _k_e_y
+             Set the client key or password for the PPP authentication
+             protocol.
+
+     aauutthhnnaammee _n_a_m_e
+             Set the client name for the PPP authentication protocol.
+
+     aauutthhpprroottoo _p_r_o_t_o
+             Set the PPP authentication protocol on the specified interface
+             acting as a client.  The protocol name can be either `chap',
+             `pap', or `none'.  In the latter case, authentication will be
+             turned off.
+
+     ppeeeerrffllaagg _f_l_a_g
+             Set a specified PPP flag for the remote authenticator.  The flag
+             name can be either `callin' or `norechallenge'.  The `callin'
+             flag will require the remote peer to authenticate only when he's
+             calling in, but not when the peer is called by the local client.
+             This is required for some peers that do not implement the
+             authentication protocols symmetrically.  The `norechallenge' flag
+             is only meaningful with the CHAP protocol to not re-challenge
+             once the initial CHAP handshake has been successful.  This is
+             used to work around broken peer implementations that can't grok
+             being re-challenged once the connection is up.
+
+     --ppeeeerrffllaagg _f_l_a_g
+             Remove a specified PPP flag for the remote authenticator.
+
+     ppeeeerrkkeeyy _k_e_y
+             Set the authenticator key or password for the PPP authentication
+             protocol.
+
+     ppeeeerrnnaammee _n_a_m_e
+             Set the authenticator name for the PPP authentication protocol.
+
+     ppeeeerrpprroottoo _p_r_o_t_o
+             Set the PPP authentication protocol on the specified interface
+             acting as an authenticator.  The protocol name can be either
+             `chap', `pap', or `none'.  In the latter case, authentication
+             will be turned off.
+
+TTRRUUNNKK
+     iiffccoonnffiigg _t_r_u_n_k_-_i_n_t_e_r_f_a_c_e [[--]ttrruunnkkppoorrtt _c_h_i_l_d_-_i_f_a_c_e] [ttrruunnkkpprroottoo _p_r_o_t_o]
+
+     The following options are available for a trunk(4) interface:
+
+     ttrruunnkkppoorrtt _c_h_i_l_d_-_i_f_a_c_e
+             Add _c_h_i_l_d_-_i_f_a_c_e as a trunk port.
+
+     --ttrruunnkkppoorrtt _c_h_i_l_d_-_i_f_a_c_e
+             Remove the trunk port _c_h_i_l_d_-_i_f_a_c_e.
+
+     ttrruunnkkpprroottoo _p_r_o_t_o
+             Set the trunk protocol.  Refer to trunk(4) for a complete list of
+             the available protocols,
+
+TTUUNNNNEELL
+     iiffccoonnffiigg _t_u_n_n_e_l_-_i_n_t_e_r_f_a_c_e [ddeelleetteettuunnnneell _s_r_c___a_d_d_r_e_s_s _d_e_s_t___a_d_d_r_e_s_s]
+              [[--]kkeeeeppaalliivvee _p_e_r_i_o_d _c_o_u_n_t] [ttuunnnneell _s_r_c___a_d_d_r_e_s_s _d_e_s_t___a_d_d_r_e_s_s]
+              [ttuunnnneellddoommaaiinn _r_o_u_t_e_-_i_d]
+
+     The following options are available for a tunnel interface:
+
+     ddeelleetteettuunnnneell _s_r_c___a_d_d_r_e_s_s _d_e_s_t___a_d_d_r_e_s_s
+             Remove the source and destination tunnel addresses.
+
+     kkeeeeppaalliivvee _p_e_r_i_o_d _c_o_u_n_t
+             Enable gre(4) keepalive with a packet sent every _p_e_r_i_o_d seconds.
+             A second timer is run with a timeout of _c_o_u_n_t * _p_e_r_i_o_d.  If no
+             keepalive response is received during that time, the link is
+             considered down.  The minimal usable _c_o_u_n_t is 2 since the round-
+             trip time of keepalive packets needs to be accounted for.
+
+     --kkeeeeppaalliivvee
+             Disable the gre(4) keepalive mechanism.
+
+     ttuunnnneell _s_r_c___a_d_d_r_e_s_s _d_e_s_t___a_d_d_r_e_s_s
+             Set the source and destination tunnel addresses on a tunnel
+             interface, including gif(4).  Packets routed to this interface
+             will be encapsulated in IPv4 or IPv6, depending on the source and
+             destination address families.  Both addresses must be of the same
+             family.
+
+     ttuunnnneellddoommaaiinn _r_o_u_t_e_-_i_d
+             Use routing table _r_o_u_t_e_-_i_d instead of the default table.  The
+             tunnel does not need to terminate in the same routing domain as
+             the interface itself.  _r_o_u_t_e_-_i_d can be set to any valid routing
+             table ID; the corresponding routing domain is derived from this
+             table.
+
+VVLLAANN
+     iiffccoonnffiigg _v_l_a_n_-_i_n_t_e_r_f_a_c_e [vvllaann _v_l_a_n_-_t_a_g] [[--]vvllaannddeevv _p_a_r_e_n_t_-_i_n_t_e_r_f_a_c_e]
+              [vvllaannpprriioo _v_l_a_n_-_p_r_i_o_r_i_t_y]
+
+     The following options are available for a vlan(4) interface:
+
+     vvllaann _v_l_a_n_-_t_a_g
+             Set the vlan tag value to _v_l_a_n_-_t_a_g.  This value is a 12-bit
+             number which is used to create an 802.1Q vlan header for packets
+             sent from the vlan interface.  This value cannot be changed once
+             it is set for an interface.
+
+     vvllaannddeevv _p_a_r_e_n_t_-_i_n_t_e_r_f_a_c_e
+             Associate with physical interface _i_f_a_c_e.  Packets transmitted
+             through the vlan interface will be diverted to the specified
+             physical interface _i_f_a_c_e with 802.1Q vlan encapsulation.  Packets
+             with 802.1Q encapsulation received by the parent interface with
+             the correct vlan tag will be diverted to the associated vlan
+             pseudo-device.  The vlan interface is assigned a copy of the
+             parent interface's flags and the parent's Ethernet address.  If
+             vvllaannddeevv and vvllaann are not set at the same time, the vlan tag will
+             be inferred from the interface name, for instance vvllaann55 will be
+             assigned 802.1Q tag 5.  If the vlan interface already has a
+             physical interface associated with it, this command will fail.
+             To change the association to another physical interface, the
+             existing association must be cleared first.
+
+     --vvllaannddeevv
+             Disassociate from the physical interface.  This breaks the link
+             between the vlan interface and its parent, clears its vlan tag,
+             flags, and link address, and shuts the interface down.
+
+     vvllaannpprriioo _v_l_a_n_-_p_r_i_o_r_i_t_y
+             Set the vlan priority value to _v_l_a_n_-_p_r_i_o_r_i_t_y.  This value is a 3-
+             bit number which is used to create an 802.1Q vlan header for
+             packets sent from the vlan interface.
+
+EEXXAAMMPPLLEESS
+     Assign the address of 192.168.1.10 with a network mask of 255.255.255.0
+     to interface fxp0:
+
+           # ifconfig fxp0 inet 192.168.1.10 netmask 255.255.255.0
+
+     Configure the xl0 interface to use 100baseTX, full duplex:
+
+           # ifconfig xl0 media 100baseTX mediaopt full-duplex
+
+     Label the em0 interface as an uplink:
+
+           # ifconfig em0 description "Uplink to Gigabit Switch 2"
+
+     Create the gif1 network interface:
+
+           # ifconfig gif1 create
+
+     Scan for wireless networks using bwi0:
+
+           # ifconfig bwi0 scan
+
+DDIIAAGGNNOOSSTTIICCSS
+     Messages indicating the specified interface does not exist, the requested
+     address is unknown, or the user is not privileged and tried to alter an
+     interface's configuration.
+
+SSEEEE AALLSSOO
+     netstat(1), ifmedia(4), inet(4), intro(4), netintro(4), hostname.if(5),
+     hosts(5), networks(5), rc(8), tcpdump(8)
+
+HHIISSTTOORRYY
+     The iiffccoonnffiigg command appeared in 4.2BSD.
+
+OpenBSD 4.9                     March 13, 2011                     OpenBSD 4.9

@@ -1,0 +1,16 @@
+/Makefile/1.14/Wed Dec 26 18:52:59 2007//
+/cmd_hppa.c/1.12/Mon Dec  6 22:51:45 2010//
+/ct.c/1.9/Wed Apr  7 18:24:20 2004//
+/dev_hppa.c/1.14/Mon Dec  6 22:51:45 2010//
+/dk.c/1.13/Mon Nov 22 18:41:41 2004//
+/elf32.c/1.1/Wed Dec 26 18:52:59 2007//
+/elf64.c/1.1/Wed Dec 26 18:52:59 2007//
+/itecons.c/1.10/Wed Jan 23 16:37:56 2008//
+/lf.c/1.7/Wed Apr  7 18:24:20 2004//
+/lif.c/1.10/Mon Nov 22 18:41:41 2004//
+/machdep.c/1.9/Wed Apr  7 18:24:20 2004//
+/time.c/1.5/Wed Apr  7 18:24:20 2004//
+/dev_hppa.h/1.9/Mon Mar 14 00:25:10 2011//
+/libsa.h/1.14/Mon Mar 14 00:25:10 2011//
+/pdc.c/1.20/Mon Mar 14 00:25:10 2011//
+D

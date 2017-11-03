@@ -1,0 +1,36 @@
+/* OpenBSD Network Interface Daemon -- Source code */
+
+/* Kleine Übersicht der Verzeichnisstruktur */
+
+0-- ifconfigctl
+Die in der Bachelorarbeit Entwickelte Software.  (Eine Beschreibung zu dem
+Inhalt finde sich in der Bachelorarbeit im Kapitel 5.1)
+
+0-- ifconfigd
+Die in der Bachelorarbeit Entwickelte Software.  (Eine Beschreibung zu dem
+Inhalt finde sich in der Bachelorarbeit im Kapitel 5.1)
+
+0-- patches
+Eine Sammlung an patches die bei der Entwicklung angefallen sind.  Hier findet
+sich das der pacth für ifconfig.{c,h}.
+
+0-- patches/monitor_engine
+Wie in Kapitel "6.2 Bewertung der Implementierung" angegeben findet sich hier
+der Patch für eine Überwachungsengine.
+
+0-- patches/monitor_engine/interface.c
+Wurde in das Projekt hinzugefügt.
+
+0-- patches/monitor_engine/monitore.c
+Wurde in das Projekt hinzugefügt.
+
+0-- patches/monitor_engine/monitore.diff
+Alle Änderungen an den vorhandenen Dateien.
+
+0-- usr (Außer '/usr/src/gnu' -- CD Passend)
+Repräsentiert den gesamten Entwicklungsordner. Hier befindet sich der gesamte
+Sourcecode von OpenBSD Version 4.9. Die Modifikationen finden sich in:
+
+0-- usr/src/usr.sbin/ifconfig
+0-- usr/src/usr.sbin/ifconfigd
+0-- usr/src/usr.sbin/ifconfigctl

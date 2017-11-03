@@ -1,0 +1,41 @@
+/.cvsignore/1.1/Mon Sep 11 14:40:28 2000//
+/.indent.pro/1.1/Mon Sep 11 14:40:28 2000//
+/ChangeLog/1.5/Tue Aug  5 09:16:14 2003//
+/ChangeLog.1999/1.2/Fri Jun 14 21:35:01 2002//
+/ChangeLog.2000/1.1.1.2/Tue Aug  5 08:20:58 2003//
+/ChangeLog.2001/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/ChangeLog.2002/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/HACKING/1.3/Tue Aug  5 09:16:14 2003//
+/INSTALL/1.5/Tue Aug  5 09:16:14 2003//
+/LIESMICH/1.3/Tue Aug  5 09:16:14 2003//
+/Makefile.in/1.2/Fri Jun  7 04:49:04 2002//
+/NEWS/1.4/Fri Jun  7 04:49:04 2002//
+/README/1.5/Tue Aug  5 09:16:14 2003//
+/THANKS/1.5/Tue Aug  5 09:16:14 2003//
+/TODO/1.4/Fri Jun  7 04:49:04 2002//
+/acconfig.h/1.1/Mon Sep 11 14:40:29 2000//
+/acinclude.m4/1.2/Fri Jun  7 04:49:04 2002//
+/config.guess/1.6/Sun Apr 17 10:07:34 2005//
+/config.sub/1.3/Tue Jan 25 05:31:04 2005//
+/configure.in/1.2/Fri Jun  7 04:49:04 2002//
+/install-sh/1.1/Mon Sep 11 14:40:29 2000//
+/make-release/1.2/Fri Jun  7 04:49:04 2002//
+/make-release.el/1.2/Fri Jun  7 04:49:04 2002//
+/mkinstalldirs/1.2/Fri Jun  7 04:49:04 2002//
+D/appl////
+D/arlad////
+D/cf////
+D/conf////
+D/doc////
+D/include////
+D/lib////
+D/lwp////
+D/milko////
+D/nnpfs////
+D/rx////
+D/rxdef////
+D/rxkad////
+D/tests////
+D/tools////
+D/util////
+D/ydr////

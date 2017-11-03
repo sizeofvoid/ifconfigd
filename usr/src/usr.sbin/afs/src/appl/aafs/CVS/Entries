@@ -1,0 +1,15 @@
+/aafs_cell.h/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/aafs_conn.h/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/aafs_partition.h/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/aafs_private.h/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/aafs_security.h/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/aafs_vldb.h/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/aafs_volume.h/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/cell.c/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/conn.c/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/partition.c/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/security.c/1.2/Tue Dec 16 20:13:54 2003//
+/test_aafs.c/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/vldb.c/1.1.1.1/Tue Aug  5 08:20:58 2003//
+/volume.c/1.1.1.1/Tue Aug  5 08:20:58 2003//
+D

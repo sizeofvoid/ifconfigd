@@ -1,0 +1,356 @@
+.\"
+.\" Copyright (c) 2011 Rafael Sadowski <rafael@sizeofvoid.org> 
+.\" Copyright (c) 2005 Esben Norby <norby@openbsd.org>
+.\" Copyright (c) 2004 Claudio Jeker <claudio@openbsd.org>
+.\" Copyright (c) 2003, 2004 Henning Brauer <henning@openbsd.org>
+.\" Copyright (c) 2002 Daniel Hartmeier <dhartmei@openbsd.org>
+.\"
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd $Mdocdate: February 2 2011 $
+.Dt IFCONFIGD.CONF 5
+.Os
+.Sh NAME
+.Nm ifconfigd.conf
+.Nd Network Interface daemon configuration file
+.Sh DESCRIPTION
+The
+.Xr ifconfigd 8
+is an OpenBSD Network Interface Daemon
+.Pq IFCONFIGD
+daemon which manages wired and wireless netzworks.
+.Pp
+.Nm
+config file is divided into three main sections.
+.Bl -tag -width xxxx
+.It Sy Macros
+User-defined variables may be defined and used later, simplifying the
+configuration file.
+.It Sy Global Configuration
+Global settings for
+.Xr ifconfigd 8 .
+.It Sy Networks
+Networks are used to group
+.Ic network
+and
+.Ic ethernet fields
+, simplifying configuration.
+.El
+.Pp
+Additional configuration files can be included with the
+.Ic include
+keyword, for example:
+.Bd -literal -offset indent
+include "/etc/ifconfigd.sub.conf"
+.Ed
+.Sh MACROS
+Macros can be defined that will later be expanded in context.
+Macro names must start with a letter, and may contain letters, digits,
+and underscores.
+Macro names may not be reserved words (for example,
+.Ic network ,
+.Ic ethernet ,
+or
+.Ic priority ) .
+Macros are not expanded inside quotes.
+.Pp
+For example:
+.Bd -literal -offset indent
+work_eth_priy="5"
+network work {
+	ethernet securitylab  {
+		priority $work_eth_priy
+	}
+}
+.Ed
+.Pp
+The same can be accomplished by specifying the priority
+globally or within the network/ethernet declaration.
+.Sh GLOBAL CONFIGURATION
+Here are the settings that can be set globally:
+.Pp
+.Bl -tag -width Ds -compact
+.It Ic update_interval Ar interval
+Specifies the update interval in seconds. After 
+.Ar interval 
+.Xr ifconfigd 8
+will check your current network for changes.
+Value 0 is the default value.
+.El
+.Sh NETWORK
+Networks are used for grouping logical network environments.
+.Bl -tag -width Ds
+.It Ic network Ar name
+Specify an area section, grouping one or more interfaces.
+.Bd -literal -offset indent
+network name {
+	ethernet ethsub1 {
+		priority 1
+	}
+	ethernet ethsub2 {
+		priority 2
+	}
+	wireless wlan1 {
+		priority 5
+	}
+}
+.Ed
+.El
+.Pp
+Network specific parameters are listed below.
+.Bl -tag -width Ds
+.It Ic priority Ar number 
+.It Xo
+.Sh ETHERNET
+Each ethernet section can have several parameters configured individually, otherwise
+they are inherited.
+An section is specified by its name.
+.Bd -literal -offset indent
+ethernet ethsub1 {
+	interface em0
+	priority 2
+	dhcp "yes"
+}
+.Ed
+.Pp
+Interface-specific parameters are listed below.
+.Bl -tag -width Ds
+.It Ic interface Ar interface
+The
+.Ar interface
+parameter is a string of the form
+.Dq name unit ,
+for example,
+.Dq en0 .
+If no optional parameters are supplied, this string can instead be just
+.Dq name .
+If an interface group of that name exists, all interfaces in the group
+will be shown.
+Otherwise all interfaces of the same type will be displayed
+(for example,
+.Dq fxp
+will display all
+.Xr fxp 4
+interfaces).
+.It Ic inet Ar address
+Internet version 4 and 6 addresses
+take the form of
+a host name present in the host name database,
+.Xr hosts 5 ;
+.Dq dot
+notation (IPv4);
+colon separated (IPv6);
+or CIDR notation.
+.Pp
+AppleTalk (LLAP) addresses are specified as
+.Dq nn.na
+.Pq Dq Network Number.Node Address .
+Node addresses are divided into two classes: User Node IDs and Server Node IDs.
+1\(en127($01\(en$7F) are for User Node IDs while 128\(en254($80\(en$FE)
+are used for Server Node IDs.
+Node 0($00) is not allowed (unknown)
+while Node 255($FF) is reserved for the AppleTalk broadcast hardware
+address (broadcast ID).
+.It Ic netmask Ar mask
+(inet and inet6)
+Specify how much of the address to reserve for subdividing
+networks into subnetworks.
+The mask includes the network part of the local address
+and the subnet part, which is taken from the host field of the address.
+The mask can be specified as a single hexadecimal number
+with a leading 0x, with a dot-notation Internet address,
+or with a pseudo-network name listed in the network table
+.Xr networks 5 .
+The mask contains 1's for the bit positions in the 32-bit address
+which are to be used for the network and subnet parts,
+and 0's for the host part.
+The mask should contain at least the standard network portion,
+and the subnet field should be contiguous with the network
+portion.
+.It Ic network Ar addr
+(inet only)
+Specify the address to use to represent broadcasts to the
+network.
+The default broadcast address is the address with a host part of all 1's.
+.It Ic dhcp
+.Pq Ic yes Ns | Ns Ic no
+.Xr
+If set to
+.Ic \&yes ,
+do request dhcp on interface.
+The default is
+.Ic no .
+.It Ic lladdr Ar etheraddr Ns \*(Ba Ns Cm random
+Change the link layer address (MAC address) of the interface.
+This should be specified as six colon-separated hex values, or can
+be chosen randomly.
+.It Ic domain-name  Ar value 
+Defining a local domain name.
+.It Ic domain-name-server  Ar value 
+A list of DNS servers.
+.It Ic run-up  Ar value 
+Path of a script that is started at connect.
+.It Ic run-down  Ar value 
+Path of a script that is started at disconnect.
+.El
+.Sh WIRELESS
+Each wireless section can have several parameters configured individually, otherwise
+they are inherited.
+An section is specified by its name.
+.Bd -literal -offset indent
+wireless wlan1 {
+	interface em0
+	priority 2
+	dhcp "yes"
+	nwid "my_ssid"
+	chan 6
+	minsignal 60 #%
+
+	wpa {
+		nwkey "secure"
+	}
+}
+.Ed
+.Pp
+wireless-specific all parameters from ethernet and listed below.
+.Bl -tag -width Ds
+.It Ic bssid Ar bssid
+Set the desired BSSID.
+.It Cm chan Op Ar n
+Set the channel (radio frequency) to
+.Ar n .
+.Pp
+With no channel specified,
+show the list of channels supported by the device.
+.It Cm nwid Ar id
+Configure network ID.
+The
+.Ar id
+can either be any text string up to 32 characters in length,
+or a series of hexadecimal digits up to 64 digits.
+The empty string allows the interface to connect to any available
+access points.
+Note that network ID is synonymous with Extended Service Set ID (ESSID).
+.It Cm nwkey Ar key
+Enable WEP encryption using the specified
+.Ar key .
+The
+.Ar key
+can either be a string, a series of hexadecimal digits (preceded by
+.So 0x Sc ) ,
+or a set of keys
+of the form
+.Dq n:k1,k2,k3,k4
+where
+.Sq n
+specifies which of the keys will be used for transmitted packets,
+and the four keys,
+.Dq k1
+through
+.Dq k4 ,
+are configured as WEP keys.
+If a set of keys is specified, a comma
+.Pq Sq \&,
+within the key must be escaped with a backslash.
+Note that if multiple keys are used, their order must be the same within
+the network.
+The length of each key must be either 40 bits, i.e. a 5-character string or
+10 hexadecimal digits or 104 bits (13-character).
+.It Cm nwkey Cm persist : Ns Ar key
+Write
+.Ar key
+to the persistent memory of the network card, and
+enable WEP encryption using that
+.Ar key .
+.It Cm wpaakms Ar akm,akm,...
+Set the comma-separated list of allowed authentication and key management
+protocols.
+.Pp
+The supported values are
+.Dq psk
+and
+.Dq 802.1x .
+.Ar psk
+authentication (also known as personal mode) uses a 256-bit pre-shared key.
+.Ar 802.1x
+authentication (also known as enterprise mode) is meant to be used with
+an external IEEE 802.1X authentication server,
+but is currently unsupported.
+The default value is
+.Dq psk .
+.Dq psk
+can only be used if a pre-shared key is configured using the
+.Cm wpakey
+option.
+.It Cm wpaciphers Ar cipher,cipher,...
+Set the comma-separated list of allowed pairwise ciphers.
+.Pp
+The supported values are
+.Dq tkip ,
+.Dq ccmp ,
+and
+.Dq usegroup .
+.Ar usegroup
+specifies that no pairwise ciphers are supported and that only group keys
+should be used.
+The default value is
+.Dq tkip,ccmp .
+If multiple pairwise ciphers are specified, the pairwise cipher will
+be negotiated between the station and the access point at association
+time.
+A station will always try to use
+.Ar ccmp
+over
+.Ar tkip
+if both ciphers are allowed and supported by the access point.
+If the selected cipher is not supported by the hardware, software
+encryption will be used.
+Check the driver's manual page to know which ciphers are supported in
+hardware.
+The
+.It Cm wpaprotos Ar proto,proto,...
+Set the comma-separated list of allowed WPA protocol versions.
+.Pp
+The supported values are
+.Dq wpa1
+and
+.Dq wpa2 .
+.Ar wpa1
+is based on draft 3 of the IEEE 802.11i standard whereas
+.Ar wpa2
+is based on the ratified standard.
+The default value is
+.Dq wpa1,wpa2 .
+IF
+.dq wpa1,wpa2
+is specified, a station will always use the
+.Ar wpa2
+protocol when supported by the access point.
+.It Cm minsignal Ar value 
+The minimum signal strength to connect. 0-100 percent.
+.El
+.Sh FILES
+.Bl -tag -width "/etc/ifconfigd.conf" -compact
+.It Pa /etc/ifconfigd.conf
+.Xr ifconfigd 8
+configuration file
+.El
+.Sh SEE ALSO
+.Xr ifconfigctl 8 ,
+.Xr ifconfigd 8 ,
+.Xr rc.conf.local 8
+.Sh HISTORY
+The
+.Nm
+file format first appeared in
+.Ox ?.? .

@@ -1,0 +1,25 @@
+/Makefile.inc/1.9/Fri Sep 24 13:54:06 2010//
+/_setjmp.S/1.4/Sun Aug  7 16:40:15 2005//
+/cacheflush.c/1.1/Sun Sep 27 18:20:13 2009//
+/fabs.S/1.5/Tue Dec  9 20:54:02 2008//
+/flt_rounds.c/1.2/Sun Aug  7 16:40:15 2005//
+/fpc_csr.c/1.1/Fri Sep 24 13:54:06 2010//
+/fpclassifyl.c/1.1/Sun Sep  7 20:36:07 2008//
+/fpgetmask.c/1.2/Sun Aug  7 16:40:15 2005//
+/fpgetround.c/1.2/Sun Aug  7 16:40:15 2005//
+/fpgetsticky.c/1.2/Sun Aug  7 16:40:15 2005//
+/fpsetmask.c/1.2/Sun Aug  7 16:40:15 2005//
+/fpsetround.c/1.2/Sun Aug  7 16:40:15 2005//
+/fpsetsticky.c/1.2/Sun Aug  7 16:40:15 2005//
+/infinity.c/1.2/Sun Aug  7 16:40:15 2005//
+/isfinitel.c/1.2/Tue Dec  9 19:52:33 2008//
+/isinfl.c/1.2/Tue Dec  9 19:52:34 2008//
+/isnanl.c/1.2/Tue Dec  9 19:52:34 2008//
+/isnormall.c/1.2/Tue Dec  9 19:52:34 2008//
+/ldexp.S/1.6/Sun Aug  7 16:40:15 2005//
+/modf.S/1.3/Sun Aug  7 16:40:15 2005//
+/nan.c/1.2/Sun Sep  7 20:36:07 2008//
+/setjmp.S/1.6/Fri Dec 11 05:10:15 2009//
+/signbitl.c/1.1/Tue Dec  9 19:52:34 2008//
+/sigsetjmp.S/1.5/Sun Aug  7 16:40:15 2005//
+D

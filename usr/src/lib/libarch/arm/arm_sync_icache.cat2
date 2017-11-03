@@ -1,0 +1,36 @@
+ARM_SYNC_ICACHE(2)     OpenBSD Programmer's Manual (ARM)    ARM_SYNC_ICACHE(2)
+
+NNAAMMEE
+     aarrmm__ssyynncc__iiccaacchhee - clean the CPU data cache and flush the CPU instruction
+     cache
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<mmaacchhiinnee//ssyyssaarrcchh..hh>>
+
+     _i_n_t
+     aarrmm__ssyynncc__iiccaacchhee(_u___i_n_t _a_d_d_r, _i_n_t _l_e_n);
+
+DDEESSCCRRIIPPTTIIOONN
+     aarrmm__ssyynncc__iiccaacchhee() will make sure that all the entries in the processor
+     instruction cache are synchronized with main memory and that any data in
+     a write back cache has been cleaned.  Some ARM processors (e.g. SA110)
+     have separate instruction and data caches, thus any dynamically generated
+     or modified code needs to be written back from any data caches to main
+     memory and the instruction cache needs to be synchronized with main
+     memory.
+
+     On such processors, aarrmm__ssyynncc__iiccaacchhee() will clean the data cache and
+     invalidate the processor instruction cache to force reloading from main
+     memory.  On processors that have a shared instruction and data cache and
+     have a write through cache (e.g. ARM6), no action needs to be taken.
+
+     The routine takes a start address _a_d_d_r and a length _l_e_n to describe the
+     area of memory that needs to be cleaned and synchronized.
+
+EERRRROORRSS
+     aarrmm__ssyynncc__iiccaacchhee() will never fail so will always return 0.
+
+RREEFFEERREENNCCEESS
+     StrongARM Data Sheet
+
+OpenBSD 4.9                    November 17, 2007                   OpenBSD 4.9

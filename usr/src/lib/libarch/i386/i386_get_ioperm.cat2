@@ -1,0 +1,59 @@
+I386_GET_IOPERM(2)    OpenBSD Programmer's Manual (i386)    I386_GET_IOPERM(2)
+
+NNAAMMEE
+     ii338866__ggeett__iiooppeerrmm, ii338866__sseett__iiooppeerrmm - manage i386 per-process I/O permission
+     bitmap
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<ssyyss//ttyyppeess..hh>>
+     ##iinncclluuddee <<mmaacchhiinnee//ssyyssaarrcchh..hh>>
+
+     _i_n_t
+     ii338866__ggeett__iiooppeerrmm(_u___l_o_n_g _*_i_o_m_a_p);
+
+     _i_n_t
+     ii338866__sseett__iiooppeerrmm(_u___l_o_n_g _*_i_o_m_a_p);
+
+DDEESSCCRRIIPPTTIIOONN
+     ii338866__ggeett__iiooppeerrmm() copies the current I/O permission bitmap into the
+     memory referenced by _i_o_m_a_p.
+
+     ii338866__sseett__iiooppeerrmm() sets the I/O permission bitmap from the data pointed to
+     by _i_o_m_a_p.  This call is restricted to the superuser.
+
+     The permission bitmap contains 1024 bits in 32 longwords.  If bit _n is
+     clear in the bitmap, then access is granted to I/O port _n.  If bit _n is
+     set in the bitmap, then an attempt to access I/O port _n results in
+     delivery of a SIGBUS signal unless the process's I/O permission level
+     would grant I/O access.
+
+     NNoottee:: Code using the ii338866__ggeett__iiooppeerrmm() and ii338866__sseett__iiooppeerrmm() functions
+     must be compiled using --llii338866.
+
+RREETTUURRNN VVAALLUUEESS
+     Upon successful completion, ii338866__ggeett__iiooppeerrmm() and ii338866__sseett__iiooppeerrmm()
+     return 0.  Otherwise, a value of -1 is returned and the global variable
+     _e_r_r_n_o is set to indicate the error.
+
+EERRRROORRSS
+     ii338866__ggeett__iiooppeerrmm() and ii338866__sseett__iiooppeerrmm() will fail if:
+
+     [EFAULT]  _i_o_m_a_p points outside the process's allocated address space.
+
+     [EPERM]   The caller was not the superuser.
+
+SSEEEE AALLSSOO
+     i386_iopl(2)
+
+     Intel, _i_3_8_6 _M_i_c_r_o_p_r_o_c_e_s_s_o_r _P_r_o_g_r_a_m_m_e_r_'_s _R_e_f_e_r_e_n_c_e _M_a_n_u_a_l.
+
+WWAARRNNIINNGG
+     You can really hose your machine if you enable user-level I/O and write
+     to hardware ports without care.
+
+BBUUGGSS
+     The bitmap should really cover 65536 bits, but that's just too big for
+     allocation in a kernel structure.  If you need access to ports beyond
+     1024, use i386_iopl(2).
+
+OpenBSD 4.9                      June 26, 2008                     OpenBSD 4.9

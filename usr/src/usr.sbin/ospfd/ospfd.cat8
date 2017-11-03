@@ -1,0 +1,114 @@
+OSPFD(8)                OpenBSD System Manager's Manual               OSPFD(8)
+
+NNAAMMEE
+     oossppffdd - Open Shortest Path First daemon
+
+SSYYNNOOPPSSIISS
+     oossppffdd [--ddnnvv] [--DD _m_a_c_r_o=_v_a_l_u_e] [--ff _f_i_l_e] [--ss _s_o_c_k_e_t]
+
+DDEESSCCRRIIPPTTIIOONN
+     oossppffdd is an Open Shortest Path First (OSPF) daemon which manages routing
+     tables.  This implementation supports OSPF version 2, thus it is only
+     capable of maintaining IPv4 routing tables.
+
+     OSPF is an interior gateway protocol designed to supersede RIP.  It has
+     several advantages over RIP.  For instance, every router has an
+     understanding of the complete network topology.  Response to changes in
+     the network is faster.  Furthermore, failure detection is improved.
+
+     The OSPF daemon maintains a Link State Database (LSDB) containing
+     information about routers and networks within an Autonomous System (AS).
+
+     Dijkstra's shortest path first algorithm is used to compute a Routing
+     Information Base (RIB) using the LSDB as input.  The Forwarding
+     Information Base (FIB), a.k.a. the kernel routing table, is updated with
+     information from the RIB.
+
+     OSPF routers discover one another automatically via OSPF hello packets.
+     OSPF routers communicate via two multicast groups: 224.0.0.5 (all
+     Shortest Path First routers) and 224.0.0.6 (all Designated Routers).
+     OSPF runs directly on top of IP and uses neither TCP nor UDP.  IP
+     protocol number 89 is reserved for OSPF.
+
+     All routers in an OSPF network spend most of their time keeping each
+     others' LSDBs in sync.  All routers must have the same information in the
+     LSDB at all times.  Every time the LSDB is updated the RIB is updated; if
+     needed the FIB is also updated.
+
+     In a multi-access network such as Ethernet, it is unfeasible for all
+     routers to synchronize their LSDB with all other routers in the network.
+     In such networks a Designated Router (DR) and a Backup Designated Router
+     (BDR) are elected.  The DR's responsibility is to synchronize with all
+     routers; the BDR will not do much until the DR fails.  The first router
+     in a network is automatically elected DR, the second router BDR.  All
+     routers have a FULL adjacency with the DR and the BDR.  Routers with FULL
+     adjacency exchange information about their LSDBs.  A router not elected
+     either DR or BDR will have 2-WAY adjacency with all routers but the DR
+     and BDR.  Routers with 2-WAY adjacency recognize that they know each
+     other, but do not exchange information about their LSDBs.  If a DR or BDR
+     fails another router is elected DR or BDR and all routers form FULL
+     adjacencies with the newly elected DR or BDR.
+
+     When routers are connected via point-to-point links, DR and BDR election
+     is skipped since only two routers are connected to the link.
+
+     To limit the impact changes in the network have on the LSDB it is
+     possible to segment an OSPF network into areas.  Area 0.0.0.0 (a.k.a. the
+     backbone area) must always be present.  Routers can be configured as Area
+     Border Router (ABR), being part of multiple areas.  Every area must have
+     direct access to the backbone area.  ABRs not directly connected to the
+     backbone area need to establish a virtual link to a router in the
+     backbone area.
+
+     AS Border Routers (ASBR) are connected to an OSPF network and other
+     external networks via BGP, RIP, or static routing, and provide
+     connectivity to networks outside the AS.
+
+     oossppffdd is usually started at boot time, and can be enabled by setting the
+     following in _/_e_t_c_/_r_c_._c_o_n_f_._l_o_c_a_l:
+
+           ospfd_flags=""
+
+     See rc(8) and rc.conf(8) for more information on the boot process and
+     enabling daemons.
+
+     A running oossppffdd can be controlled with the ospfctl(8) utility.
+
+     The options are as follows:
+
+     --DD _m_a_c_r_o=_v_a_l_u_e
+             Define _m_a_c_r_o to be set to _v_a_l_u_e on the command line.  Overrides
+             the definition of _m_a_c_r_o in the configuration file.
+
+     --dd      Do not daemonize.  If this option is specified, oossppffdd will run in
+             the foreground and log to _s_t_d_e_r_r.
+
+     --ff _f_i_l_e
+             Specify an alternative configuration file.
+
+     --nn      Configtest mode.  Only check the configuration file for validity.
+
+     --ss _s_o_c_k_e_t
+             Use an alternate location for the default control socket.
+
+     --vv      Produce more verbose output.
+
+FFIILLEESS
+     /etc/ospfd.conf        Default oossppffdd configuration file.
+     /var/run/ospfd.sock    UNIX-domain socket used for communication with
+                            ospfctl(8).
+
+SSEEEE AALLSSOO
+     ospfd.conf(5), ospfctl(8)
+
+     _O_S_P_F _V_e_r_s_i_o_n _2, RFC 2328, April 1998.
+
+     _O_S_P_F _S_t_u_b _R_o_u_t_e_r _A_d_v_e_r_t_i_s_e_m_e_n_t, RFC 3137, June 2001.
+
+HHIISSTTOORRYY
+     The oossppffdd program first appeared in OpenBSD 3.7.
+
+BBUUGGSS
+     Virtual links are currently not available in oossppffdd.
+
+OpenBSD 4.9                      May 24, 2010                      OpenBSD 4.9

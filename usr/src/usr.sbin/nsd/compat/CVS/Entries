@@ -1,0 +1,17 @@
+/b64_ntop.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/b64_pton.c/1.1.1.2/Thu Apr 15 20:57:15 2010//
+/basename.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/fake-rfc2553.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/fake-rfc2553.h/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/inet_aton.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/inet_ntop.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/inet_pton.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/malloc.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/memcmp.c/1.1.1.1/Thu Apr 15 20:57:16 2010//
+/memmove.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/pselect.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/snprintf.c/1.1.1.2/Thu Apr 15 20:57:15 2010//
+/strlcat.c/1.1.1.1/Thu Apr 15 20:57:16 2010//
+/strlcpy.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+/strptime.c/1.1.1.1/Fri Jan 15 19:25:08 2010//
+D

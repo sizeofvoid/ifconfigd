@@ -1,0 +1,45 @@
+I386_GET_FSBASE(2)    OpenBSD Programmer's Manual (i386)    I386_GET_FSBASE(2)
+
+NNAAMMEE
+     ii338866__ggeett__ffssbbaassee, ii338866__sseett__ffssbbaassee - manage i386 per-thread %fs base
+     address
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<ssyyss//ttyyppeess..hh>>
+     ##iinncclluuddee <<mmaacchhiinnee//ssyyssaarrcchh..hh>>
+
+     _i_n_t
+     ii338866__ggeett__ffssbbaassee(_v_o_i_d _*_*_b_a_s_e);
+
+     _i_n_t
+     ii338866__sseett__ffssbbaassee(_v_o_i_d _*_b_a_s_e);
+
+DDEESSCCRRIIPPTTIIOONN
+     ii338866__ggeett__ffssbbaassee() copies the current base address of the segment that, by
+     default, is referenced by the %fs selector into the memory referenced by
+     _b_a_s_e.
+
+     ii338866__sseett__ffssbbaassee() sets the base address of the segment that, by default,
+     is referenced by %fs to the address _b_a_s_e.
+
+     When rfork(RFPROC | RFTHREAD) is used, the segment base address for the
+     above calls is a per-thread value.  When a new thread is created, it
+     inherits the base from the thread that created it.
+
+     NNoottee:: Code using the ii338866__ggeett__ffssbbaassee() and ii338866__sseett__ffssbbaassee() functions
+     must be compiled using --llii338866.
+
+RREETTUURRNN VVAALLUUEESS
+     Upon successful completion, ii338866__ggeett__ffssbbaassee() and ii338866__sseett__ffssbbaassee()
+     return 0.  Otherwise, a value of -1 is returned and the global variable
+     _e_r_r_n_o is set to indicate the error.
+
+EERRRROORRSS
+     ii338866__ggeett__ffssbbaassee() will fail if:
+
+     [EFAULT]  _b_a_s_e points outside the process's allocated address space.
+
+SSEEEE AALLSSOO
+     Intel, _i_3_8_6 _M_i_c_r_o_p_r_o_c_e_s_s_o_r _P_r_o_g_r_a_m_m_e_r_'_s _R_e_f_e_r_e_n_c_e _M_a_n_u_a_l.
+
+OpenBSD 4.9                     March 12, 2011                     OpenBSD 4.9

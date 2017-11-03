@@ -1,0 +1,11 @@
+/autoconf.c/1.2/Tue Oct 26 00:02:01 2010//
+/bus_dma.c/1.2/Sun Dec 26 15:41:00 2010//
+/conf.c/1.6/Fri Jan 14 19:04:08 2011//
+/genassym.cf/1.1/Mon Sep 20 06:32:30 2010//
+/lock_machdep.c/1.1/Mon Sep 20 06:32:30 2010//
+/locore.S/1.3/Tue Nov 23 22:06:57 2010//
+/machdep.c/1.7/Sun Nov 28 20:53:41 2010//
+/pciide_machdep.c/1.1/Thu Oct 28 22:52:10 2010//
+/disksubr.c/1.5/Mon May  2 11:16:55 2011//
+/mutex.c/1.5/Mon May  2 11:16:55 2011//
+D

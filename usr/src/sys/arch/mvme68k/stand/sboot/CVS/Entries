@@ -1,0 +1,14 @@
+/Makefile/1.9/Wed Aug  3 00:16:02 2005//
+/XBUG.S/1.7/Wed Jun  4 16:36:14 2003//
+/XSRT0.S/1.5/Wed Jun  4 16:36:14 2003//
+/clock.c/1.7/Tue Aug 19 10:22:30 2003//
+/clockreg.h/1.4/Mon Jun  2 23:27:51 2003//
+/etherfun.c/1.6/Tue Aug 19 10:22:30 2003//
+/etherfun.h/1.2/Sun Apr 28 10:49:37 1996//
+/if_le.c/1.7/Tue Aug 19 10:22:30 2003//
+/if_lereg.h/1.5/Mon Jun  2 23:27:51 2003//
+/oc_cksum.S/1.4/Wed Jun  4 16:36:14 2003//
+/sboot.c/1.9/Tue Aug 19 10:22:30 2003//
+/sboot.h/1.8/Thu Mar 14 03:15:56 2002//
+/srec.c/1.5/Tue Aug 19 10:22:30 2003//
+D

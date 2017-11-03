@@ -1,0 +1,293 @@
+? ifconfig/ifconfig.cat8
+Index: ifconfig/ifconfig.c
+===================================================================
+RCS file: /cvs/src/sbin/ifconfig/ifconfig.c,v
+retrieving revision 1.246
+diff -u -r1.246 ifconfig.c
+--- ifconfig/ifconfig.c	23 Mar 2011 18:36:41 -0000	1.246
++++ ifconfig/ifconfig.c	2 May 2011 15:19:09 -0000
+@@ -105,6 +105,7 @@
+ #include <ifaddrs.h>
+ 
+ #include "brconfig.h"
++#include "ifconfig.h"
+ #include "pbkdf2.h"
+ 
+ struct	ifreq		ifr, ridreq;
+@@ -137,126 +138,6 @@
+ int	shownet80211chans;
+ int	shownet80211nodes;
+ 
+-void	notealias(const char *, int);
+-void	setifaddr(const char *, int);
+-void	setifrtlabel(const char *, int);
+-void	setiflladdr(const char *, int);
+-void	setifdstaddr(const char *, int);
+-void	setifflags(const char *, int);
+-void	setifxflags(const char *, int);
+-void	setifbroadaddr(const char *, int);
+-void	setifmtu(const char *, int);
+-void	setifnwid(const char *, int);
+-void	setifbssid(const char *, int);
+-void	setifnwkey(const char *, int);
+-void	setifwpa(const char *, int);
+-void	setifwpaprotos(const char *, int);
+-void	setifwpaakms(const char *, int);
+-void	setifwpaciphers(const char *, int);
+-void	setifwpagroupcipher(const char *, int);
+-void	setifwpakey(const char *, int);
+-void	setifchan(const char *, int);
+-void	setifscan(const char *, int);
+-void	setiftxpower(const char *, int);
+-void	setifnwflag(const char *, int);
+-void	unsetifnwflag(const char *, int);
+-void	setifnetmask(const char *, int);
+-void	setifprefixlen(const char *, int);
+-void	setatrange(const char *, int);
+-void	setatphase(const char *, int);
+-void	settunnel(const char *, const char *);
+-void	deletetunnel(const char *, int);
+-void	settunnelinst(const char *, int);
+-#ifdef INET6
+-void	setia6flags(const char *, int);
+-void	setia6pltime(const char *, int);
+-void	setia6vltime(const char *, int);
+-void	setia6lifetime(const char *, const char *);
+-void	setia6eui64(const char *, int);
+-void	setkeepalive(const char *, const char *);
+-void	unsetkeepalive(const char *, int);
+-#endif /* INET6 */
+-void	checkatrange(struct sockaddr_at *);
+-void	setmedia(const char *, int);
+-void	setmediaopt(const char *, int);
+-void	setmediamode(const char *, int);
+-void	clone_create(const char *, int);
+-void	clone_destroy(const char *, int);
+-void	unsetmediaopt(const char *, int);
+-void	setmediainst(const char *, int);
+-void	settimeslot(const char *, int);
+-void	timeslot_status(void);
+-void	setmpelabel(const char *, int);
+-void	setvlantag(const char *, int);
+-void	setvlanprio(const char *, int);
+-void	setvlandev(const char *, int);
+-void	unsetvlandev(const char *, int);
+-void	mpe_status(void);
+-void	vlan_status(void);
+-void	setinstance(const char *, int);
+-int	main(int, char *[]);
+-int	prefix(void *val, int);
+-
+-#ifndef SMALL
+-void	getifgroups(void);
+-void	carp_status(void);
+-void	setcarp_advbase(const char *,int);
+-void	setcarp_advskew(const char *, int);
+-void	setcarppeer(const char *, int);
+-void	unsetcarppeer(const char *, int);
+-void	setcarp_passwd(const char *, int);
+-void	setcarp_vhid(const char *, int);
+-void	setcarp_state(const char *, int);
+-void	setcarpdev(const char *, int);
+-void	unsetcarpdev(const char *, int);
+-void	setcarp_nodes(const char *, int);
+-void	setcarp_balancing(const char *, int);
+-void	setpfsync_syncdev(const char *, int);
+-void	setpfsync_maxupd(const char *, int);
+-void	unsetpfsync_syncdev(const char *, int);
+-void	setpfsync_syncpeer(const char *, int);
+-void	unsetpfsync_syncpeer(const char *, int);
+-void	setpfsync_defer(const char *, int);
+-void	pfsync_status(void);
+-void	setpppoe_dev(const char *,int);
+-void	setpppoe_svc(const char *,int);
+-void	setpppoe_ac(const char *,int);
+-void	pppoe_status(void);
+-void	setspppproto(const char *, int);
+-void	setspppname(const char *, int);
+-void	setspppkey(const char *, int);
+-void	setsppppeerproto(const char *, int);
+-void	setsppppeername(const char *, int);
+-void	setsppppeerkey(const char *, int);
+-void	setsppppeerflag(const char *, int);
+-void	unsetsppppeerflag(const char *, int);
+-void	spppinfo(struct spppreq *);
+-void	sppp_status(void);
+-void	sppp_printproto(const char *, struct sauthreq *);
+-void	settrunkport(const char *, int);
+-void	unsettrunkport(const char *, int);
+-void	settrunkproto(const char *, int);
+-void	trunk_status(void);
+-void	setifgroup(const char *, int);
+-void	unsetifgroup(const char *, int);
+-void	setifpriority(const char *, int);
+-void	setifpowersave(const char *, int);
+-void	setifmetric(const char *, int);
+-void	notrailers(const char *, int);
+-void	setgroupattribs(char *, int, char *[]);
+-void	pflow_status(void);
+-void	setpflow_sender(const char *, int);
+-void	unsetpflow_sender(const char *, int);
+-void	setpflow_receiver(const char *, int);
+-void	unsetpflow_receiver(const char *, int);
+-void	list_cloners(void);
+-void	setifipdst(const char *, int);
+-void	setifdesc(const char *, int);
+-void	unsetifdesc(const char *, int);
+-int	printgroup(char *, int);
+-#else
+-void	setignore(const char *, int);
+-#endif
+ 
+ /*
+  * Media stuff.  Whenever a media command is first performed, the
+Index: ifconfig/ifconfig.h
+===================================================================
+RCS file: ifconfig/ifconfig.h
+diff -N ifconfig/ifconfig.h
+--- /dev/null	1 Jan 1970 00:00:00 -0000
++++ ifconfig/ifconfig.h	2 May 2011 15:19:09 -0000
+@@ -0,0 +1,143 @@
++/*
++ * Copyright (c) 2011 Rafael Sadowski <rafael@sizeofvoid.org>
++ *
++ * Permission to use, copy, modify, and distribute this software for any
++ * purpose with or without fee is hereby granted, provided that the above
++ * copyright notice and this permission notice appear in all copies.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
++ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
++ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
++ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
++ * WHATSOEVER RESULTING FROM LOSS OF MIND, USE, DATA OR PROFITS, WHETHER
++ * IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
++ * OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
++ */
++#ifndef _IFCONFIG_H_
++#define _IFCONFIG_H_
++
++#include <net/if_sppp.h>
++
++#include <netatalk/at.h>
++
++void	notealias(const char *, int);
++void	setifaddr(const char *, int);
++void	setifrtlabel(const char *, int);
++void	setiflladdr(const char *, int);
++void	setifdstaddr(const char *, int);
++void	setifflags(const char *, int);
++void	setifxflags(const char *, int);
++void	setifbroadaddr(const char *, int);
++void	setifmtu(const char *, int);
++void	setifnwid(const char *, int);
++void	setifbssid(const char *, int);
++void	setifnwkey(const char *, int);
++void	setifwpa(const char *, int);
++void	setifwpaprotos(const char *, int);
++void	setifwpaakms(const char *, int);
++void	setifwpaciphers(const char *, int);
++void	setifwpagroupcipher(const char *, int);
++void	setifwpakey(const char *, int);
++void	setifchan(const char *, int);
++void	setifscan(const char *, int);
++void	setiftxpower(const char *, int);
++void	setifnwflag(const char *, int);
++void	unsetifnwflag(const char *, int);
++void	setifnetmask(const char *, int);
++void	setifprefixlen(const char *, int);
++void	setatrange(const char *, int);
++void	setatphase(const char *, int);
++void	settunnel(const char *, const char *);
++void	deletetunnel(const char *, int);
++void	settunnelinst(const char *, int);
++#ifdef INET6
++void	setia6flags(const char *, int);
++void	setia6pltime(const char *, int);
++void	setia6vltime(const char *, int);
++void	setia6lifetime(const char *, const char *);
++void	setia6eui64(const char *, int);
++void	setkeepalive(const char *, const char *);
++void	unsetkeepalive(const char *, int);
++#endif /* INET6 */
++void	checkatrange(struct sockaddr_at *);
++void	setmedia(const char *, int);
++void	setmediaopt(const char *, int);
++void	setmediamode(const char *, int);
++void	clone_create(const char *, int);
++void	clone_destroy(const char *, int);
++void	unsetmediaopt(const char *, int);
++void	setmediainst(const char *, int);
++void	settimeslot(const char *, int);
++void	timeslot_status(void);
++void	setmpelabel(const char *, int);
++void	setvlantag(const char *, int);
++void	setvlanprio(const char *, int);
++void	setvlandev(const char *, int);
++void	unsetvlandev(const char *, int);
++void	mpe_status(void);
++void	vlan_status(void);
++void	setinstance(const char *, int);
++int	main(int, char *[]);
++int	prefix(void *val, int);
++
++#ifndef SMALL
++void	getifgroups(void);
++void	carp_status(void);
++void	setcarp_advbase(const char *,int);
++void	setcarp_advskew(const char *, int);
++void	setcarppeer(const char *, int);
++void	unsetcarppeer(const char *, int);
++void	setcarp_passwd(const char *, int);
++void	setcarp_vhid(const char *, int);
++void	setcarp_state(const char *, int);
++void	setcarpdev(const char *, int);
++void	unsetcarpdev(const char *, int);
++void	setcarp_nodes(const char *, int);
++void	setcarp_balancing(const char *, int);
++void	setpfsync_syncdev(const char *, int);
++void	setpfsync_maxupd(const char *, int);
++void	unsetpfsync_syncdev(const char *, int);
++void	setpfsync_syncpeer(const char *, int);
++void	unsetpfsync_syncpeer(const char *, int);
++void	setpfsync_defer(const char *, int);
++void	pfsync_status(void);
++void	setpppoe_dev(const char *,int);
++void	setpppoe_svc(const char *,int);
++void	setpppoe_ac(const char *,int);
++void	pppoe_status(void);
++void	setspppproto(const char *, int);
++void	setspppname(const char *, int);
++void	setspppkey(const char *, int);
++void	setsppppeerproto(const char *, int);
++void	setsppppeername(const char *, int);
++void	setsppppeerkey(const char *, int);
++void	setsppppeerflag(const char *, int);
++void	unsetsppppeerflag(const char *, int);
++void	spppinfo(struct spppreq *);
++void	sppp_status(void);
++void	sppp_printproto(const char *, struct sauthreq *);
++void	settrunkport(const char *, int);
++void	unsettrunkport(const char *, int);
++void	settrunkproto(const char *, int);
++void	trunk_status(void);
++void	setifgroup(const char *, int);
++void	unsetifgroup(const char *, int);
++void	setifpriority(const char *, int);
++void	setifpowersave(const char *, int);
++void	setifmetric(const char *, int);
++void	notrailers(const char *, int);
++void	setgroupattribs(char *, int, char *[]);
++void	pflow_status(void);
++void	setpflow_sender(const char *, int);
++void	unsetpflow_sender(const char *, int);
++void	setpflow_receiver(const char *, int);
++void	unsetpflow_receiver(const char *, int);
++void	list_cloners(void);
++void	setifipdst(const char *, int);
++void	setifdesc(const char *, int);
++void	unsetifdesc(const char *, int);
++int	printgroup(char *, int);
++#else
++void	setignore(const char *, int);
++#endif
++#endif	/* _IFCONFIG_H_ */

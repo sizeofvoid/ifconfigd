@@ -1,0 +1,59 @@
+SNMPD(8)                OpenBSD System Manager's Manual               SNMPD(8)
+
+NNAAMMEE
+     ssnnmmppdd - Simple Network Management Protocol daemon
+
+SSYYNNOOPPSSIISS
+     ssnnmmppdd [--ddNNnnvv] [--DD _m_a_c_r_o=_v_a_l_u_e] [--ff _f_i_l_e] [--rr _p_a_t_h]
+
+DDEESSCCRRIIPPTTIIOONN
+     ssnnmmppdd is a daemon which implements the SNMP protocol.
+
+     The options are as follows:
+
+     --DD _m_a_c_r_o=_v_a_l_u_e
+             Define _m_a_c_r_o to be set to _v_a_l_u_e on the command line.  Overrides
+             the definition of _m_a_c_r_o in the configuration file.
+
+     --dd      Do not daemonize and log to _s_t_d_e_r_r.
+
+     --ff _f_i_l_e
+             Use _f_i_l_e as the configuration file, instead of the default
+             _/_e_t_c_/_s_n_m_p_d_._c_o_n_f.
+
+     --NN      Show numeric OID values instead of their symbolic names.
+
+     --nn      Configtest mode.  Only check the configuration file for validity.
+
+     --rr _p_a_t_h
+             Open a second, restricted, control socket that snmpctl(8) can
+             use.  Only _t_r_a_p requests are allowed on this socket.
+
+     --vv      Produce more verbose output.
+
+FFIILLEESS
+     _/_e_t_c_/_s_n_m_p_d_._c_o_n_f            default ssnnmmppdd configuration file
+     _/_v_a_r_/_r_u_n_/_s_n_m_p_d_._s_o_c_k        default ssnnmmppdd control socket
+     _/_u_s_r_/_s_h_a_r_e_/_s_n_m_p_/_m_i_b_s_/_*     ssnnmmppdd Management Information Base definitions
+
+SSEEEE AALLSSOO
+     snmpd.conf(5), snmpctl(8)
+
+     _A _S_i_m_p_l_e _N_e_t_w_o_r_k _M_a_n_a_g_e_m_e_n_t _P_r_o_t_o_c_o_l _(_S_N_M_P_), RFC 1157, May 1990.
+
+     _S_N_M_P _V_e_r_s_i_o_n _3 _(_S_N_M_P_v_3_), http://www.ibr.cs.tu-bs.de/projects/snmpv3/,
+     March 2002.
+
+     _I_n_t_r_o_d_u_c_t_i_o_n _a_n_d _A_p_p_l_i_c_a_b_i_l_i_t_y _S_t_a_t_e_m_e_n_t_s _f_o_r _I_n_t_e_r_n_e_t _S_t_a_n_d_a_r_d
+     _M_a_n_a_g_e_m_e_n_t _F_r_a_m_e_w_o_r_k, RFC 3410, December 2002.
+
+HHIISSTTOORRYY
+     The ssnnmmppdd program first appeared in OpenBSD 4.3.
+
+AAUUTTHHOORRSS
+     The ssnnmmppdd program was written by Reyk Floeter <reyk@vantronix.net>.
+
+CCAAVVEEAATTSS
+     ssnnmmppdd does not fully work yet.
+
+OpenBSD 4.9                      May 24, 2010                      OpenBSD 4.9

@@ -1,0 +1,26 @@
+/CutRule/1.1.1.2/Thu Oct  1 17:19:37 1998//
+/GuessCodeset/1.1/Tue Jan 25 18:29:39 2000//
+/GuessOS/1.10/Mon Oct  7 20:23:06 2002//
+/MakeEtags/1.1.1.1/Thu Oct  1 17:19:37 1998//
+/MakeLint/1.1.1.1/Thu Oct  1 17:19:37 1998//
+/PrintPath/1.3/Wed Sep 29 06:29:24 1999//
+/TestCompile/1.7/Tue Feb 12 07:56:49 2002//
+/binbuild.sh/1.8/Mon Oct  7 20:23:06 2002//
+/buildinfo.sh/1.2/Wed Sep 29 06:29:25 1999//
+/checkheader.sh/1.2/Wed Sep 29 06:29:25 1999//
+/cvstodsp5.pl/1.1/Fri Dec 15 22:17:55 2000//
+/dsp5tocvs.pl/1.2/Tue Feb 12 07:56:49 2002//
+/dummy.c/1.2/Wed Sep 29 06:29:25 1999//
+/find-dbm-lib/1.6/Fri Mar 29 02:08:05 2002//
+/findcpp.sh/1.3/Fri Jan 28 18:39:59 2000//
+/fixwin32mak.pl/1.1/Tue Feb 12 07:56:49 2002//
+/fmn.sh/1.3/Tue Jan 25 18:29:40 2000//
+/fp2rp/1.2/Wed Sep 29 06:29:26 1999//
+/getuid.sh/1.2/Fri Jan 28 18:39:59 2000//
+/install.sh/1.4/Tue Feb 12 07:56:49 2002//
+/mfhead/1.2/Fri Jan 28 18:39:59 2000//
+/mkdir.sh/1.1.1.1/Thu Oct  1 17:19:38 1998//
+/mkshadow.sh/1.3/Wed Sep 29 06:29:27 1999//
+/ppl.sh/1.2/Wed Sep 29 06:29:27 1999//
+/slo.sh/1.2/Wed Sep 29 06:29:27 1999//
+D

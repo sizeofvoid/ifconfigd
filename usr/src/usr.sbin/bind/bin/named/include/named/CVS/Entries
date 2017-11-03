@@ -1,0 +1,26 @@
+/builtin.h/1.1.1.2/Sun Dec  9 12:33:16 2007//
+/client.h/1.1.1.5/Sun Dec  9 12:33:15 2007//
+/config.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+/control.h/1.6/Sun Dec  9 13:39:43 2007//
+/globals.h/1.8/Sun Dec  9 13:39:43 2007//
+/interfacemgr.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/listenlist.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/log.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/logconf.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+/lwaddr.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/lwdclient.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/lwresd.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+/lwsearch.h/1.1.1.3/Sun Dec  9 12:33:16 2007//
+/main.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/notify.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/ns_smf_globals.h/1.1.1.2/Sun Dec  9 12:33:15 2007//
+/query.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/server.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+/sortlist.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+/tkeyconf.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+/tsigconf.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+/types.h/1.1.1.3/Sun Dec  9 12:33:16 2007//
+/update.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/xfrout.h/1.1.1.3/Sun Dec  9 12:33:15 2007//
+/zoneconf.h/1.1.1.4/Sun Dec  9 12:33:15 2007//
+D

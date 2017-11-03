@@ -1,0 +1,34 @@
+GET_FPC_CSR(3)       OpenBSD Programmer's Manual (MIPS64)       GET_FPC_CSR(3)
+
+NNAAMMEE
+     ggeett__ffppcc__ccssrr, sseett__ffppcc__ccssrr - floating-point control register access
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<mmaacchhiinnee//ffppuu..hh>>
+
+     _i_n_t
+     ggeett__ffppcc__ccssrr();
+
+     _i_n_t
+     sseett__ffppcc__ccssrr(_i_n_t _c_s_r);
+
+DDEESSCCRRIIPPTTIIOONN
+     The ggeett__ffppcc__ccssrr() function returns the curent value of the floating-point
+     control register.  The sseett__ffppcc__ccssrr() function replaces the value of the
+     floating-point control register with _c_s_r and returns the previous value.
+
+     These functions are provided for IRIX compatibility, and should only be
+     used to control the value of the FPCSR_FS bit in the floating-point
+     control register.  Portable code should use the fpgetmask(3),
+     fpgetround(3), fpgetsticky(3), fpsetmask(3), fpsetround(3), and
+     fpsetsticky(3) functions to inquire or alter the floating-point control
+     register.
+
+RREETTUURRNN VVAALLUUEESS
+     The ggeett__ffppcc__ccssrr() and sseett__ffppcc__ccssrr() functions return the (previous) value
+     of the floating-point control register.
+
+SSEEEE AALLSSOO
+     fpgetmask(3)
+
+OpenBSD 4.9                   September 26, 2010                   OpenBSD 4.9

@@ -1,0 +1,17 @@
+A D/bsdos////
+A D/hpux////
+A D/ibcs2////
+A D/m68k4k////
+A D/netbsd////
+A D/osf1////
+A D/sunos////
+A D/ultrix////
+R D/ultrix////
+R D/sunos////
+R D/osf1////
+R D/netbsd////
+R D/m68k4k////
+R D/ibcs2////
+R D/hpux////
+R D/freebsd////
+R D/bsdos////

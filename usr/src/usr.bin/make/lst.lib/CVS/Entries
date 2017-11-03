@@ -1,0 +1,18 @@
+/lstAddNew.c/1.8/Mon Jul 19 19:46:44 2010//
+/lstAppend.c/1.20/Mon Jul 19 19:46:44 2010//
+/lstConcat.c/1.20/Mon Jul 19 19:46:44 2010//
+/lstConcatDestroy.c/1.11/Mon Jul 19 19:46:44 2010//
+/lstDeQueue.c/1.19/Mon Jul 19 19:46:44 2010//
+/lstDestroy.c/1.20/Mon Jul 19 19:46:44 2010//
+/lstDupl.c/1.22/Mon Jul 19 19:46:44 2010//
+/lstFindFrom.c/1.18/Mon Jul 19 19:46:44 2010//
+/lstForEachFrom.c/1.19/Mon Jul 19 19:46:44 2010//
+/lstInit.c/1.19/Mon Jul 19 19:46:44 2010//
+/lstInsert.c/1.20/Mon Jul 19 19:46:44 2010//
+/lstInt.h/1.15/Mon Jul 19 19:46:44 2010//
+/lstMember.c/1.17/Mon Jul 19 19:46:44 2010//
+/lstRemove.c/1.19/Mon Jul 19 19:46:44 2010//
+/lstReplace.c/1.18/Mon Jul 19 19:46:44 2010//
+/lstRequeue.c/1.1/Sat Jan 12 13:05:57 2008//
+/lstSucc.c/1.17/Mon Jul 19 19:46:44 2010//
+D

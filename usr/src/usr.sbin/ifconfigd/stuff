@@ -1,0 +1,56 @@
+
+void
+static_wlan_connection (int argc, char *argv[], char *iface)
+{
+	char *ip = "192.168.2.23";
+	char *netmask = "255.255.255.0";
+	char *nwid = "OpenHTC";
+	char *psk = "openhtc23%";
+	char *ifname = "lo0";
+
+	const struct afswtch *rafp = NULL;
+	cmd *p;
+
+	/* set interface */
+	if (strlcpy(name, iface, sizeof(iface)) >= IFNAMSIZ)
+		errx(1, "interface name '%s' too long", iface);
+
+
+
+	if (argc > 0) {
+	for (afp = rafp = afs; rafp->af_name; rafp++)
+		if (strcmp(rafp->af_name, "inet") == 0) {
+			afp = rafp;
+		}
+	rafp = afp;
+
+	af = ifr.ifr_addr.sa_family = rafp->af_af;
+	(void) strlcpy(ifr.ifr_name, iface, sizeof(ifr.ifr_name));
+
+	/* set flags and socket */
+	(void)getinfo(&ifr, 0);
+
+	for (p = cmds; p->c_name; p++)
+		if (strcmp("inet", p->c_name) == 0)
+			break;
+
+
+	(*p->c_func)(p, p->c_parameter);
+
+	process_media_commands();
+
+	if (clearaddr) {
+		(void) strlcpy(rafp->af_ridreq, name, sizeof(ifr.ifr_name));
+		if (ioctl(s, rafp->af_difaddr, rafp->af_ridreq) < 0) {
+			if (errno == EADDRNOTAVAIL && (doalias >= 0)) {
+				/* means no previous address for interface */
+			} else
+				err(1, "SIOCDIFADDR");
+		}
+	}
+	if (newaddr) {
+		(void) strlcpy(rafp->af_addreq, name, sizeof(ifr.ifr_name));
+		if (ioctl(s, rafp->af_aifaddr, rafp->af_addreq) < 0)
+			err(1, "SIOCAIFADDR");
+	}
+}

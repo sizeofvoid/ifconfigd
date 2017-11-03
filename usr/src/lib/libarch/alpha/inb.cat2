@@ -1,0 +1,91 @@
+LIBALPHA(2)           OpenBSD Programmer's Manual (Alpha)          LIBALPHA(2)
+
+NNAAMMEE
+     ddeennssee__bbaassee, iinnbb, iinnll, iinnww, iiooppeerrmm, mmaapp__mmeemmoorryy, oouuttbb, oouuttll, oouuttww, rreeaaddbb,
+     rreeaaddll, rreeaaddww, uunnmmaapp__mmeemmoorryy, wwrriitteebb, wwrriitteell, wwrriitteeww - Alpha devices I/O
+     ports and memory access functions
+
+SSYYNNOOPPSSIISS
+     _u___i_n_t_6_4___t
+     ddeennssee__bbaassee(_v_o_i_d);
+
+     _u___i_n_t_8___t
+     iinnbb(_u___i_n_t_3_2___t _p_o_r_t);
+
+     _u___i_n_t_3_2___t
+     iinnll(_u___i_n_t_3_2___t _p_o_r_t);
+
+     _u___i_n_t_1_6___t
+     iinnww(_u___i_n_t_3_2___t _p_o_r_t);
+
+     _i_n_t
+     iiooppeerrmm(_u_n_s_i_g_n_e_d _l_o_n_g _f_r_o_m, _u_n_s_i_g_n_e_d _l_o_n_g _n_u_m, _i_n_t _o_n);
+
+     _v_o_i_d _*
+     mmaapp__mmeemmoorryy(_u___i_n_t_3_2___t _a_d_d_r_e_s_s, _u___i_n_t_3_2___t _s_i_z_e);
+
+     _v_o_i_d
+     oouuttbb(_u___i_n_t_3_2___t _p_o_r_t, _u___i_n_t_8___t _v_a_l);
+
+     _v_o_i_d
+     oouuttll(_u___i_n_t_3_2___t _p_o_r_t, _u___i_n_t_3_2___t _v_a_l);
+
+     _v_o_i_d
+     oouuttww(_u___i_n_t_3_2___t _p_o_r_t, _u___i_n_t_1_6___t _v_a_l);
+
+     _u___i_n_t_8___t
+     rreeaaddbb(_v_o_i_d _*_h_a_n_d_l_e, _u___i_n_t_3_2___t _o_f_f_s_e_t);
+
+     _u___i_n_t_3_2___t
+     rreeaaddll(_v_o_i_d _*_h_a_n_d_l_e, _u___i_n_t_3_2___t _o_f_f_s_e_t);
+
+     _u___i_n_t_1_6___t
+     rreeaaddww(_v_o_i_d _*_h_a_n_d_l_e, _u___i_n_t_3_2___t _o_f_f_s_e_t);
+
+     _v_o_i_d
+     uunnmmaapp__mmeemmoorryy(_v_o_i_d _*_h_a_n_d_l_e, _u___i_n_t_3_2___t _s_i_z_e);
+
+     _v_o_i_d
+     wwrriitteebb(_v_o_i_d _*_h_a_n_d_l_e, _u___i_n_t_3_2___t _o_f_f_s_e_t, _u___i_n_t_8___t _v_a_l);
+
+     _v_o_i_d
+     wwrriitteell(_v_o_i_d _*_h_a_n_d_l_e, _u___i_n_t_3_2___t _o_f_f_s_e_t, _u___i_n_t_3_2___t _v_a_l);
+
+     _v_o_i_d
+     wwrriitteeww(_v_o_i_d _*_h_a_n_d_l_e, _u___i_n_t_3_2___t _o_f_f_s_e_t, _u___i_n_t_1_6___t _v_a_l);
+
+DDEESSCCRRIIPPTTIIOONN
+     The functions in libalpha give userland programs access to the I/O ports
+     on the OpenBSD/alpha platform.
+
+     The iinn**() functions return data read from the specified I/O port.
+
+     The oouutt**() functions write data to the specified I/O port.
+
+     iiooppeerrmm() enables access to the specified port numbers if _o_n is TRUE and
+     disables access if _o_n is FALSE.
+
+     The mmaapp__mmeemmoorryy() function allows a user program to map part of a device
+     memory.
+
+     The uunnmmaapp__mmeemmoorryy() function unmaps memory that was previously mapped by
+     mmaapp__mmeemmoorryy().
+
+     The rreeaadd**() functions read data from device memory previously mapped by
+     mmaapp__mmeemmoorryy().
+
+     The wwrriittee**() functions write data to the device memory previously mapped
+     by mmaapp__mmeemmoorryy().
+
+     NNoottee: Code using these functions must be compiled using --llaallpphhaa.
+
+HHIISSTTOORRYY
+     These functions originally appeared in FreeBSD.
+
+CCAAVVEEAATTSS
+     Only BWX bus access method is supported for now. Machines requiring swiz
+     type access are not supported.
+
+     Root credentials are needed to use these functions.
+
+OpenBSD 4.9                      May 31, 2007                      OpenBSD 4.9

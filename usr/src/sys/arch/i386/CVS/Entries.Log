@@ -1,0 +1,8 @@
+A D/apm_init////
+A D/boot////
+A D/boot.dos////
+A D/netboot////
+R D/netboot////
+R D/boot.dos////
+R D/boot////
+R D/apm_init////

@@ -1,0 +1,115 @@
+/MAKEDEV.man/1.7/Wed Mar 18 17:34:25 2009//
+/MAKEDEV.mansub/1.2/Fri Feb 20 19:13:01 2004//
+/MAKEDEV.sub/1.14/Mon Feb  7 06:14:18 2005//
+/Makefile.inc/1.7/Wed Jun 16 23:33:38 2010//
+/bgpd.conf/1.12/Wed Jan 19 07:36:40 2011//
+/ccd.conf/1.1/Sat Aug 24 20:52:22 1996//
+/chio.conf/1.3/Thu Nov  1 19:41:50 2007//
+/crontab/1.18/Sat May  9 17:15:49 2009//
+/csh.cshrc/1.2/Sun May 26 10:25:19 1996//
+/csh.login/1.2/Sun May 26 10:25:19 1996//
+/csh.logout/1.2/Sun May 26 10:25:20 1996//
+/dhcpd.conf/1.2/Fri Oct  3 11:41:21 2008//
+/dvmrpd.conf/1.1/Thu Jun  1 16:38:08 2006//
+/exports/1.2/Fri May 31 08:15:44 2002//
+/fbtab.head/1.2/Wed May  5 06:56:34 1999//
+/fbtab.tail/1.2/Sat Aug 24 21:07:30 1996//
+/ftpchroot/1.3/Thu Jul 18 12:12:47 1996//
+/ftpusers/1.43/Thu Jun  3 20:32:36 2010//
+/gettytab/1.4/Fri Sep  8 02:27:36 2000//
+/group/1.59/Thu Jun  3 20:28:22 2010//
+/hostapd.conf/1.11/Tue Feb 27 20:53:45 2007//
+/hosts/1.12/Tue Mar 10 00:42:13 2009//
+/hosts.equiv/1.5/Sat Dec  1 19:10:01 2001//
+/hosts.lpd/1.3/Tue Apr 15 07:54:48 2008//
+/ifstated.conf/1.6/Mon Feb  7 06:08:10 2005//
+/iked.conf/1.1/Mon Jun  7 10:09:05 2010//
+/inetd.conf/1.59/Wed Nov 16 09:20:22 2005//
+/ipsec.conf/1.5/Thu Sep 14 15:10:43 2006//
+/ksh.kshrc/1.15/Mon Apr 26 09:04:15 2010//
+/ldapd.conf/1.2/Tue Jun 29 02:50:22 2010//
+/ldpd.conf/1.3/Fri Jun 25 22:49:05 2010//
+/locate.rc/1.6/Thu Sep 18 09:20:13 2003//
+/login.conf.in/1.3/Fri Dec 17 05:33:06 2010//
+/mailer.conf/1.4/Mon Mar 16 14:26:22 2009//
+/master.passwd/1.66/Fri Jul  2 13:12:35 2010//
+/minfree/1.1/Mon Dec 18 15:18:15 1995//
+/mklogin.conf/1.6/Fri Dec 17 05:33:06 2010//
+/moduli/1.5/Tue Oct 27 21:36:11 2009//
+/monthly/1.13/Wed Jan 19 06:18:05 2011//
+/motd/1.8/Sun Jan 11 14:08:38 1998//
+/mrouted.conf/1.7/Wed Feb 26 23:15:20 2003//
+/myname/1.4/Thu Sep 26 23:35:51 2002//
+/networks/1.5/Mon Sep 15 09:54:52 1997//
+/nsd.conf/1.4/Thu Aug 26 19:05:14 2010//
+/ntpd.conf/1.11/Mon May 18 16:13:48 2009//
+/ospf6d.conf/1.2/Fri Jan  8 15:12:48 2010//
+/ospfd.conf/1.4/Tue Jun 19 16:49:56 2007//
+/pf.os/1.25/Mon Oct 18 15:55:27 2010//
+/printcap/1.4/Fri Mar 28 21:32:30 2003//
+/protocols/1.22/Sun Oct  4 16:08:37 2009//
+/rbootd.conf/1.5/Mon Feb  7 06:08:10 2005//
+/rc.securelevel/1.16/Tue Jul  6 04:05:03 2004//
+/remote/1.12/Tue Jun 29 17:17:53 2010//
+/ripd.conf/1.3/Tue Oct 24 16:33:21 2006//
+/rpc/1.4/Thu Apr 26 20:28:38 2007//
+/sasyncd.conf/1.1/Thu Feb 22 16:55:32 2007//
+/sensorsd.conf/1.9/Wed Jan 19 06:18:05 2011//
+/services/1.75/Thu Dec 16 18:08:57 2010//
+/shells/1.8/Sat Feb 14 17:06:40 2009//
+/snmpd.conf/1.2/Wed Jan 30 10:21:05 2008//
+/syslog.conf/1.17/Wed May 25 07:35:38 2005//
+/ttys.pty/1.4/Tue May 18 16:45:46 2004//
+/weekly/1.24/Wed Jan 19 06:18:05 2011//
+/wsconsctl.conf/1.2/Mon May 14 05:06:03 2007//
+D/afs////
+D/amd////
+D/bind////
+D/etc.alpha////
+D/etc.amd64////
+D/etc.armish////
+D/etc.aviion////
+D/etc.hp300////
+D/etc.hppa////
+D/etc.hppa64////
+D/etc.i386////
+D/etc.landisk////
+D/etc.loongson////
+D/etc.luna88k////
+D/etc.mac68k////
+D/etc.macppc////
+D/etc.mvme68k////
+D/etc.mvme88k////
+D/etc.mvmeppc////
+D/etc.palm////
+D/etc.sgi////
+D/etc.socppc////
+D/etc.sparc////
+D/etc.sparc64////
+D/etc.svr4////
+D/etc.vax////
+D/etc.zaurus////
+D/kerberosV////
+D/mail////
+D/mtree////
+D/ppp////
+D/rc.d////
+D/root////
+D/skel////
+D/systrace////
+/netstart/1.131/Mon Mar 14 00:23:20 2011//
+/rc.conf/1.141/Mon Mar 14 00:23:20 2011//
+/MAKEDEV.common/1.54/Mon May  2 11:12:43 2011//
+/MAKEDEV.mi/1.80/Mon May  2 11:12:43 2011//
+/Makefile/1.295/Mon May  2 11:12:44 2011//
+/changelist/1.73/Mon May  2 11:12:44 2011//
+/daily/1.71/Mon May  2 11:12:44 2011//
+/dhclient.conf/1.2/Mon May  2 11:12:44 2011//
+/man.conf/1.17/Mon May  2 11:12:44 2011//
+/newsyslog.conf/1.29/Mon May  2 11:12:44 2011//
+/pf.conf/1.50/Mon May  2 11:12:44 2011//
+/rc/1.352/Mon May  2 11:12:44 2011//
+/rc.local/1.44/Mon May  2 11:12:44 2011//
+/rc.shutdown/1.12/Mon May  2 11:12:44 2011//
+/relayd.conf/1.14/Mon May  2 11:12:44 2011//
+/sysctl.conf/1.51/Mon May  2 11:12:44 2011//

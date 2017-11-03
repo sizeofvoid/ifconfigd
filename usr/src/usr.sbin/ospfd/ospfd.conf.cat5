@@ -1,0 +1,247 @@
+OSPFD.CONF(5)             OpenBSD Programmer's Manual            OSPFD.CONF(5)
+
+NNAAMMEE
+     oossppffdd..ccoonnff - Open Shortest Path First daemon configuration file
+
+DDEESSCCRRIIPPTTIIOONN
+     The ospfd(8) daemon implements the Open Shortest Path First protocol
+     version 2 as described in RFC 2328.
+
+SSEECCTTIIOONNSS
+     The oossppffdd..ccoonnff config file is divided into three main sections.
+
+     MMaaccrrooss
+           User-defined variables may be defined and used later, simplifying
+           the configuration file.
+
+     GGlloobbaall CCoonnffiigguurraattiioonn
+           Global settings for ospfd(8).  A number of global settings can be
+           overruled in specific areas or interfaces.
+
+     AArreeaass
+           An OSPF router must be a member of at least one area.  Areas are
+           used to group interfaces, simplifying configuration.
+
+     Additional configuration files can be included with the iinncclluuddee keyword,
+     for example:
+
+           include "/etc/ospfd.sub.conf"
+
+MMAACCRROOSS
+     Macros can be defined that will later be expanded in context.  Macro
+     names must start with a letter, and may contain letters, digits, and
+     underscores.  Macro names may not be reserved words (for example, aarreeaa,
+     iinntteerrffaaccee, or hheelllloo--iinntteerrvvaall).  Macros are not expanded inside quotes.
+
+     For example:
+
+           hi="5"
+           area 0.0.0.0 {
+                   interface em0 {
+                           hello-interval $hi
+                   }
+           }
+
+     The same can be accomplished by specifying the hello-interval globally or
+     within the area declaration.
+
+GGLLOOBBAALL CCOONNFFIIGGUURRAATTIIOONN
+     All interface related settings can be configured globally, per area and
+     per interface.  The only settings that can be set globally and not
+     overruled are listed below.
+
+     ffiibb--uuppddaattee (yyeess|nnoo)
+             If set to nnoo, do not update the Forwarding Information Base,
+             a.k.a. the kernel routing table.  The default is yyeess.  Setting
+             ffiibb--uuppddaattee to nnoo will implicitly set the ssttuubb rroouutteerr option to
+             ensure that no traffic tries to transit via this router.
+
+     rrddoommaaiinn _t_a_b_l_e_i_d
+             Specifies the routing table ospfd(8) should modify.  Table 0 is
+             the default table.
+
+     [nnoo] rreeddiissttrriibbuuttee (ssttaattiicc|ccoonnnneecctteedd|ddeeffaauulltt) [sseett ......]
+     [nnoo] rreeddiissttrriibbuuttee _p_r_e_f_i_x [sseett ......]
+     [nnoo] rreeddiissttrriibbuuttee rrttllaabbeell _l_a_b_e_l [sseett ......]
+             If set to ccoonnnneecctteedd, routes to directly attached networks will be
+             announced over OSPF.  If set to ssttaattiicc, static routes will be
+             announced over OSPF.  If set to ddeeffaauulltt, a default route pointing
+             to this router will be announced over OSPF.  It is possible to
+             specify a network range with _p_r_e_f_i_x; networks need to be part of
+             that range to be redistributed.  Additionally it is possible to
+             redistribute based on route labels using the rrttllaabbeell keyword.  By
+             default no additional routes will be announced over OSPF.
+
+             rreeddiissttrriibbuuttee statements are evaluated in sequential order, from
+             first to last.  The first matching rule decides if a route should
+             be redistributed or not.  Matching rules starting with nnoo will
+             force the route to be not announced.  The only exception is
+             ddeeffaauulltt, which will be set no matter what, and additionally nnoo
+             cannot be used together with it.
+
+             It is possible to set the route mmeettrriicc and ttyyppee for each
+             redistribute rule.  ttyyppee is either 1 or 2.  The default value for
+             ttyyppee is 1 and for mmeettrriicc is 100.  Setting more than one option
+             needs curly brackets:
+
+                   redistribute static set { metric 300 type 2 }
+
+     rrffcc11558833ccoommppaatt (yyeess|nnoo)
+             If set to yyeess, decisions regarding AS-external routes are
+             evaluated according to RFC 1583.  The default is nnoo.
+
+     rroouutteerr--iidd _a_d_d_r_e_s_s
+             Set the router ID; if not specified, the numerically lowest IP
+             address of the router will be used.
+
+     rrttllaabbeell _l_a_b_e_l eexxtteerrnnaall--ttaagg _n_u_m_b_e_r
+             Map route labels to external route tags and vice versa.  The
+             external route tag is a non-negative 32-bit number attached to
+             AS-external OSPF LSAs.
+
+     ssppff--ddeellaayy (_s_e_c_o_n_d_s|mmsseecc _m_i_l_l_i_s_e_c_o_n_d_s)
+             Set the SPF delay.  The delay between receiving an update to the
+             link state database and starting the shortest path first
+             calculation.  The default value is 1 second; valid range is 10
+             milliseconds-10 seconds.
+
+     ssppff--hhoollddttiimmee (_s_e_c_o_n_d_s|mmsseecc _m_i_l_l_i_s_e_c_o_n_d_s)
+             Set the SPF holdtime.  The minimum time between two consecutive
+             shortest path first calculations.  The default value is 5
+             seconds; the valid range is 10 milliseconds-5 seconds.
+
+     ssttuubb rroouutteerr (yyeess|nnoo)
+             If set to yyeess, all interfaces with active neighbors will have a
+             metric of infinity.  This ensures that the other routers prefer
+             routes around this router while still being able to reach
+             directly connected IP prefixes.  The ssttuubb rroouutteerr option is
+             automatically enabled if either the sysctl(8) variable
+             _n_e_t_._i_n_e_t_._i_p_._f_o_r_w_a_r_d_i_n_g is set to a value different to 1 or if the
+             FIB is not coupled.
+
+AARREEAASS
+     Areas are used for grouping interfaces.  All interface-specific
+     parameters can be configured per area, overruling the global settings.
+
+     aarreeaa _a_d_d_r_e_s_s
+             Specify an area section, grouping one or more interfaces.
+
+                   area 0.0.0.0 {
+                           interface em0
+                           interface em1 {
+                                   metric 10
+                           }
+                   }
+
+     Area specific parameters are listed below.
+
+     ddeemmoottee _g_r_o_u_p [_c_o_u_n_t]
+             Increase the carp(4) demotion counter by _c_o_u_n_t on the given
+             interface group, usually _c_a_r_p, when no neighbor in the area is in
+             an active state.  The demotion counter will be decreased when one
+             neighbor in that area is in an active state.  The default value
+             for _c_o_u_n_t is 1.
+
+             For more information on interface groups, see the ggrroouupp keyword
+             in ifconfig(8).
+
+     ssttuubb [rreeddiissttrriibbuuttee ddeeffaauulltt] [sseett ......]
+             Mark the area as _s_t_u_b.  Stub areas will not be flooded by as-ext
+             LSA, resulting in smaller routing tables.  Area border routers
+             should redistribute a default network LSA; this can be enabled by
+             specifying the default redistribute option.  A default summary
+             LSA will only be redistributed if the router has an active
+             connection to the backbone area 0.0.0.0.
+
+IINNTTEERRFFAACCEESS
+     Each interface can have several parameters configured individually,
+     otherwise they are inherited.  An interface is specified by its name.  If
+     multiple networks are configured an additional IP address can be
+     supplied.  By default the first IP address is used.
+
+           interface em0 {
+                   auth-type crypt
+                   auth-md 1 "yotVoo_Heypp"
+                   auth-md-keyid 1
+           }
+           interface fxp0:192.168.1.3
+
+     Interface-specific parameters are listed below.
+
+     aauutthh--kkeeyy _k_e_y
+             Set the authentication key for ssiimmppllee authentication.  Up to 8
+             characters can be specified.
+
+     aauutthh--mmdd _k_e_y_-_i_d _k_e_y
+             Set the authentication _k_e_y_-_i_d and _k_e_y for ccrryypptt authentication.
+             The valid range for _k_e_y_-_i_d is 0-255.  Up to 16 characters can be
+             specified for _k_e_y.  Multiple keys may be specified.
+
+     aauutthh--mmdd--kkeeyyiidd _k_e_y_-_i_d
+             Configure the _k_e_y_-_i_d to use for ccrryypptt authentication.  The valid
+             range for _k_e_y_-_i_d is 0-255.  The default key-id is 1.  While key-
+             id 0 is valid, it is unavailable on various other
+             implementations.
+
+     aauutthh--ttyyppee (nnoonnee|ssiimmppllee|ccrryypptt)
+             Set the authentication type.  The default is nnoonnee.  Simple
+             authentication uses a plaintext password, up to 8 characters.
+             Crypt authentication uses an MD5 hash.
+
+     ddeemmoottee _g_r_o_u_p
+             Increase the carp(4) demotion counter by 1 on the given interface
+             group, usually _c_a_r_p, when the interface state is going down.  The
+             demotion counter will be decreased when the interface state is
+             active again.
+
+     ffaasstt--hheelllloo--iinntteerrvvaall mmsseecc _m_i_l_l_i_s_e_c_o_n_d_s
+             If the interface is configured to use rroouutteerr--ddeeaadd--ttiimmee mmiinniimmaall,
+             hello packets will be sent using this timer.  The default value
+             is 333; valid range is 50-333 milliseconds.
+
+     hheelllloo--iinntteerrvvaall _s_e_c_o_n_d_s
+             Set the hello interval.  The default value is 10; valid range is
+             1-65535 seconds.
+
+     mmeettrriicc _c_o_s_t
+             Set the interface metric a.k.a. cost.  The default value is 10;
+             valid range is 1-65535.
+
+     ppaassssiivvee
+             Prevent transmission and reception of OSPF packets on this
+             interface.  The specified interface will be announced as a stub
+             network.
+
+     rreettrraannssmmiitt--iinntteerrvvaall _s_e_c_o_n_d_s
+             Set retransmit interval.  The default value is 5 seconds; valid
+             range is 5-3600 seconds.
+
+     rroouutteerr--ddeeaadd--ttiimmee (_s_e_c_o_n_d_s|mmiinniimmaall)
+             Set the router dead time, a.k.a. neighbor inactivity timer.  The
+             default value is 40 seconds; valid range is 2-2147483647 seconds.
+             If the router dead time has been set to mmiinniimmaall, the timer is set
+             to 1 second and hello packets are sent using the interval
+             specified by ffaasstt--hheelllloo--iinntteerrvvaall.  When a neighbor has been
+             inactive for router-dead-time its state is set to DOWN.
+             Neighbors that have been inactive for more than 24 hours are
+             completely removed.
+
+     rroouutteerr--pprriioorriittyy _p_r_i_o_r_i_t_y
+             Set the router priority.  The default value is 1; valid range is
+             0-255.  If set to 0 the router is not eligible as a Designated
+             Router or Backup Designated Router.
+
+     ttrraannssmmiitt--ddeellaayy _s_e_c_o_n_d_s
+             Set the transmit delay.  The default value is 1; valid range is
+             1-3600 seconds.
+
+FFIILLEESS
+     _/_e_t_c_/_o_s_p_f_d_._c_o_n_f  ospfd(8) configuration file
+
+SSEEEE AALLSSOO
+     ospfctl(8), ospfd(8), rc.conf.local(8)
+
+HHIISSTTOORRYY
+     The oossppffdd..ccoonnff file format first appeared in OpenBSD 3.7.
+
+OpenBSD 4.9                    February 2, 2011                    OpenBSD 4.9

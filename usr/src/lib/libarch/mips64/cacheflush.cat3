@@ -1,0 +1,44 @@
+CACHEFLUSH(3)        OpenBSD Programmer's Manual (MIPS64)        CACHEFLUSH(3)
+
+NNAAMMEE
+     ccaacchheefflluusshh, __fflluusshh__ccaacchhee - CPU cache synchronization functions
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<mmaacchhiinnee//ssyyssaarrcchh..hh>>
+
+     _i_n_t
+     ccaacchheefflluusshh(_v_o_i_d _*_a_d_d_r, _i_n_t _n_b_y_t_e_s, _i_n_t _c_a_c_h_e);
+
+     _i_n_t
+     __fflluusshh__ccaacchhee(_c_h_a_r _*_a_d_d_r, _i_n_t _n_b_y_t_e_s, _i_n_t _c_a_c_h_e);
+
+DDEESSCCRRIIPPTTIIOONN
+     ccaacchheefflluusshh() allows a process to synchronize the contents of the
+     processor caches with main memory.  Since MIPS processors have separate
+     instruction and data caches, this function allows for dynamically
+     generated code to run correctly.
+
+     ccaacchheefflluusshh operates on a contiguous memory range in the current process
+     address space, starting at address _a_d_d_r and _n_b_y_t_e_s bytes long.  The
+     caches to be synchronized are specified in the _c_a_c_h_e argument with one of
+     the following values:
+
+        ICACHE     synchronize the instruction cache
+        DCACHE     synchronize the data cache
+        BCACHE     synchronize both the instruction and data caches
+
+     __fflluusshh__ccaacchhee is an alias for the ccaacchheefflluusshh function.
+
+RREETTUURRNN VVAALLUUEESS
+     Upon successful completion, ccaacchheefflluusshh returns zero.  Otherwise, a value
+     of -1 is returned and _e_r_r_n_o is set to indicate the error.
+
+EERRRROORRSS
+     ccaacchheefflluusshh will fail if:
+
+     [EFAULT]      The address range specified by _a_d_d_r and _n_b_y_t_e_s is not part
+                   of the process allocated address space.
+
+     [EINVAL]      _c_a_c_h_e is not valid.
+
+OpenBSD 4.9                   September 26, 2010                   OpenBSD 4.9

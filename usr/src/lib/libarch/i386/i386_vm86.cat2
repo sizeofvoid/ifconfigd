@@ -1,0 +1,49 @@
+I386_VM86(2)          OpenBSD Programmer's Manual (i386)          I386_VM86(2)
+
+NNAAMMEE
+     ii338866__vvmm8866 - set virtual 8086 processor registers and mode
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<ssyyss//ttyyppeess..hh>>
+     ##iinncclluuddee <<ssiiggnnaall..hh>>
+     ##iinncclluuddee <<mmaacchhiinnee//sseeggmmeennttss..hh>>
+     ##iinncclluuddee <<mmaacchhiinnee//ssyyssaarrcchh..hh>>
+     ##iinncclluuddee <<mmaacchhiinnee//vvmm8866..hh>>
+
+     _i_n_t
+     ii338866__vvmm8866(_s_t_r_u_c_t _v_m_8_6___s_t_r_u_c_t _*_v_m_c_p);
+
+DDEESSCCRRIIPPTTIIOONN
+     ii338866__vvmm8866() will set the process into virtual 8086 mode using the
+     registers and selectors specified by the context pointed to by _v_m_c_p.  The
+     processor registers are set from _v_m_c_p_-_>_s_u_b_s_t_r_._r_e_g_s, and the emulated
+     processor type from _v_m_c_p_-_>_s_u_b_s_t_r_._s_s___c_p_u___t_y_p_e.
+
+     The kernel keeps a pointer to the context, and uses the tables stored at
+     _v_m_c_p_-_>_i_n_t___b_y_u_s_e_r and _v_m_c_p_-_>_i_n_t_2_1___b_y_u_s_e_r for fast virtual interrupt
+     handling.  If the _nth bit is clear in the first of these arrays, then the
+     kernel may directly emulate the real-mode x86 INT _n instruction handling.
+     If the _nth bit is set, then the process is delivered a signal when an INT
+     instruction is executed.
+
+     Since MS-DOS puts many DOS functions onto interrupt 21, it is handled
+     specially: the _kth bit in the _v_m_c_p_-_>_i_n_t_2_1___b_y_u_s_e_r array is checked when
+     INT _2_1 is requested and the _a_h register is _k.
+
+     NNoottee:: Code using the ii338866__vvmm8866() function must be compiled using --llii338866.
+
+RREETTUURRNN VVAALLUUEESS
+     This routine does not normally return: 32-bit mode will be restored by
+     the delivery of a signal to the process.  In case of an error in setting
+     the VM86 mode, a value of -1 is returned and the global variable _e_r_r_n_o is
+     set to indicate the error.
+
+EERRRROORRSS
+     ii338866__vvmm8866() will fail if:
+
+     [EFAULT]  The state at _v_m_c_p was not readable to the user process.
+
+RREEFFEERREENNCCEESS
+     Intel, _i_3_8_6 _M_i_c_r_o_p_r_o_c_e_s_s_o_r _P_r_o_g_r_a_m_m_e_r_'_s _R_e_f_e_r_e_n_c_e _M_a_n_u_a_l.
+
+OpenBSD 4.9                      June 26, 2008                     OpenBSD 4.9

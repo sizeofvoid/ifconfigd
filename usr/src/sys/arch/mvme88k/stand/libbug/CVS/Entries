@@ -1,0 +1,18 @@
+/Makefile/1.7/Mon Jan 26 19:48:33 2004//
+/Makefile.inc/1.2/Sat Aug 22 07:39:52 1998//
+/delay.c/1.3/Sun Sep  7 21:35:35 2003//
+/diskrd.c/1.4/Sun Sep  7 21:35:35 2003//
+/diskwr.c/1.3/Sun Sep  7 21:35:35 2003//
+/getbrdid.c/1.3/Sun Sep  7 21:35:35 2003//
+/inchr.c/1.2/Sun Sep  7 21:35:35 2003//
+/instat.c/1.3/Sun Sep  7 21:35:35 2003//
+/libbug.h/1.6/Wed Apr  2 21:53:18 2008//
+/netfopen.c/1.1/Wed Jan 28 00:27:44 2004//
+/netfread.c/1.1/Wed Jan 28 00:27:44 2004//
+/outln.c/1.3/Sun Sep  7 21:35:35 2003//
+/outstr.c/1.3/Sun Sep  7 21:35:35 2003//
+/prom.h/1.3/Sun Sep  7 21:35:35 2003//
+/putchar.c/1.4/Tue May 16 22:51:30 2006//
+/return.c/1.4/Tue May 16 22:51:30 2006//
+/rtc_rd.c/1.3/Sun Sep  7 21:35:35 2003//
+D

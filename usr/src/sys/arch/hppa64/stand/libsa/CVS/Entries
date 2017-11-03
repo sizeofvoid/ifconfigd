@@ -1,0 +1,14 @@
+/Makefile/1.1/Fri Apr  1 10:40:48 2005//
+/cmd_hppa64.c/1.4/Mon Dec  6 22:51:45 2010//
+/ct.c/1.1/Fri Apr  1 10:40:48 2005//
+/dev_hppa64.c/1.5/Mon Dec  6 22:51:45 2010//
+/dk.c/1.1/Fri Apr  1 10:40:48 2005//
+/itecons.c/1.2/Wed Jan 23 16:37:56 2008//
+/lf.c/1.1/Fri Apr  1 10:40:48 2005//
+/lif.c/1.1/Fri Apr  1 10:40:48 2005//
+/machdep.c/1.1/Fri Apr  1 10:40:48 2005//
+/time.c/1.1/Fri Apr  1 10:40:48 2005//
+/dev_hppa64.h/1.2/Mon Mar 14 00:25:10 2011//
+/libsa.h/1.2/Mon Mar 14 00:25:10 2011//
+/pdc.c/1.2/Mon Mar 14 00:25:10 2011//
+D

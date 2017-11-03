@@ -1,0 +1,25 @@
+ARM_DRAIN_WRITEBUF(2)     OpenBSD Programmer's Manual    ARM_DRAIN_WRITEBUF(2)
+
+NNAAMMEE
+     aarrmm__ddrraaiinn__wwrriitteebbuuff - drains the CPU write buffer
+
+SSYYNNOOPPSSIISS
+     ##iinncclluuddee <<mmaacchhiinnee//ssyyssaarrcchh..hh>>
+
+     _i_n_t
+     aarrmm__ddrraaiinn__wwrriitteebbuuff();
+
+DDEESSCCRRIIPPTTIIOONN
+     aarrmm__ddrraaiinn__wwrriitteebbuuff() will make sure that all the entries in the processor
+     write buffer are written out to memory.
+
+     Not all processors support this operation (currently only the SA110
+     does).  Those processes that do not, treat this function as a null-op.
+
+EERRRROORRSS
+     aarrmm__ddrraaiinn__wwrriitteebbuuff() will never fail so will always return 0.
+
+RREEFFEERREENNCCEESS
+     StrongARM Data Sheet
+
+OpenBSD 4.9                    November 17, 2007                   OpenBSD 4.9

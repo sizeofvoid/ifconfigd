@@ -1,0 +1,21 @@
+/bcmp.S/1.2/Sat Nov 24 19:28:25 2007//
+/bcopy.S/1.2/Sat Nov 24 19:28:25 2007//
+/bzero.S/1.3/Sat Nov 24 19:28:25 2007//
+/ffs.S/1.2/Sat Nov 24 19:28:25 2007//
+/htonl.S/1.1/Sun Nov 25 18:25:34 2007//
+/htons.S/1.1/Sun Nov 25 18:25:34 2007//
+/index.S/1.3/Wed Nov 28 11:46:35 2007//
+/memchr.S/1.2/Sat Nov 24 19:28:25 2007//
+/memcmp.S/1.2/Sat Nov 24 19:28:25 2007//
+/memcpy.S/1.1/Wed Jan 28 01:39:40 2004//
+/memmove.S/1.1/Wed Jan 28 01:39:40 2004//
+/memset.S/1.3/Sat Nov 24 19:28:25 2007//
+/ovbcopy.S/1.1/Wed Jan 28 01:39:40 2004//
+/rindex.S/1.3/Wed Nov 28 11:46:35 2007//
+/scanc.S/1.2/Thu Jun 26 05:42:20 2008//
+/skpc.S/1.2/Thu Jun 26 05:42:20 2008//
+/strchr.S/1.2/Sun Nov 25 18:25:35 2007//
+/strcmp.S/1.2/Sat Nov 24 19:28:25 2007//
+/strlen.S/1.2/Sat Nov 24 19:28:25 2007//
+/strrchr.S/1.2/Sun Nov 25 18:25:35 2007//
+D
