@@ -1,5 +1,5 @@
-## My Bachelor Thesis - OpenBSD 4.9 Network Interface Daemon
+# My Bachelor Thesis - OpenBSD 4.9 Network Interface Daemon
 
-# Usage
+## Usage
 
 More of less dead.
